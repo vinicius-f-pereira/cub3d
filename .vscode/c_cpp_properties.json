@@ -1,0 +1,18 @@
+{
+	"configurations": [
+		{
+			"name": "Linux",
+			"includePath": [
+				"${workspaceFolder}/**",
+				"${workspaceFolder}/libft/include/**",
+				"${workspaceFolder}/MLX42/include/MLX42/**"
+			],
+			"defines": [],
+			"compilerPath": "/usr/bin/gcc",
+			"cStandard": "c11",
+			"cppStandard": "c++11",
+			"intelliSenseMode": "gcc-x64"
+		}
+	],
+	"version": 4
+}
