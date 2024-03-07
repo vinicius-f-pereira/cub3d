@@ -4,8 +4,9 @@
 			"name": "Linux",
 			"includePath": [
 				"${workspaceFolder}/**",
-				"${workspaceFolder}/libft/include/**",
-				"${workspaceFolder}/MLX42/include/MLX42/**"
+				"${workspaceFolder}/include",
+				"${workspaceFolder}/libft/include",
+				"${workspaceFolder}/MLX42/include/MLX42"
 			],
 			"defines": [],
 			"compilerPath": "/usr/bin/gcc",

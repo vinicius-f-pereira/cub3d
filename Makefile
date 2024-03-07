@@ -1,10 +1,11 @@
 #≻───░⋆ ✪ DEFAULTS ✪ ⋆░──────────────────────────────────────────────────────≺#
 NAME				=	cub3d
 CC					=	cc
-CC_FLAGS			=	-Wall	\
-						-Wextra	\
-						-Werror	\
-						-O2
+CC_FLAGS			=	-Wall		\
+						-Wextra		\
+						-Werror		\
+						-pedantic	\
+						-g3
 
 #≻───░⋆ ✪ PROJECT DIRECTORIES & FILES ✪ ⋆░───────────────────────────────────≺#
 SRC_DIR				=	src
@@ -12,8 +13,10 @@ INCLUDE_DIR			=	include
 INCLUDE_FILES		=	cub3d.h
 INCLUDES			=	$(addprefix $(INCLUDE_DIR)/, $(INCLUDE_FILES))
 BUILD_DIR			=	build
+VALIDATION_FILES	=	validation.c
 SRC_FILES			=	main.c
-SRCS				=	$(addprefix $(SRC_DIR)/, SRC_FILES)
+SRCS				=	$(addprefix $(SRC_DIR)/, SRC_FILES) 					\
+						$(addprefix $(SRC_DIR)/validation/, VALIDATION_FILES)
 OBJS				=	$(SRC_FILES:.c=.o)
 BUILDS				=	$(addprefix $(BUILD_DIR)/, $(OBJS))
 
@@ -32,7 +35,7 @@ LIBFT_CC			=	-I./$(LIBFT_INCLUDE_DIR)	\
 MLX42_REPO			=	https://github.com/codam-coding-college/MLX42.git
 MLX42_LIB_NAME		=	libmlx42.a
 MLX42_DIR			=	MLX42
-MLX42_INCLUDE_DIR	=	$(MLX42_DIR)/include
+MLX42_INCLUDE_DIR	=	$(MLX42_DIR)/include/MLX42
 MLX42_BUILD_DIR		=	$(MLX42_DIR)/build
 MLX42_LIB			=	$(MLX42_BUILD_DIR)/$(MLX42_LIB_NAME)
 MLX42_LIBS			=	-lmlx42		\
@@ -57,6 +60,11 @@ all: $(NAME)
 
 bonus: $(NAME)
 
+debug: clean_cub3d
+debug: CC_FLAGS += -DDEBUG
+debug: NAME = cub3d_debug
+debug: all
+
 $(NAME): $(MLX42_LIB) $(LIBFT_LIB) $(BUILD_DIR) $(BUILDS) $(INCLUDES)
 	@ $(CC) -o $(NAME)	\
 	  $(BUILDS)			\
@@ -78,8 +86,10 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(INCLUDES)
 	  -o $@						\
 	  $(CC_FLAGS)
 
-clean: clean_MLX clean_libft
+clean_cub3d:
 	@ rm -rf $(BUILD_DIR)
+
+clean: clean_MLX clean_libft clean_cub3d
 
 fclean: fclean_MLX fclean_libft clean
 	@ rm -rf $(NAME)
