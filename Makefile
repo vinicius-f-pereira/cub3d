@@ -14,7 +14,9 @@ INCLUDE_FILES		=	cub3d.h		\
 						import.h
 INCLUDES			=	$(addprefix $(INCLUDE_DIR)/, $(INCLUDE_FILES))
 BUILD_DIR			=	build
-IMPORT_FILES		=	import.c		\
+IMPORT_FILES		=	error_msg.c		\
+						get_elements.c	\
+						import.c		\
 						validation.c
 SRC_FILES			=	main.c
 SRCS				=	$(addprefix $(SRC_DIR)/, SRC_FILES) 					\
