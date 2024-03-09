@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validation.c                                       :+:      :+:    :+:   */
+/*   import.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/07 11:43:12 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/07 11:53:12 by brmoretti        ###   ########.fr       */
+/*   Created: 2024/03/08 14:29:08 by bmoretti          #+#    #+#             */
+/*   Updated: 2024/03/08 15:25:08 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef IMPORT_H
+# define IMPORT_H
 
-int	is_valid(int argc, char *argv[])
-{
-	if (argc > 2)
-	{
-		ft_putendl_fd(MSG_USAGE, 2);
-		return (0);
-	}
-	
-}
+# include "cub3d.h"
+
+# define ELEMENTS {"NO ", "SO ", "WE ", "EA ", "F ", "C ", NULL}
+
+int	basic_validation(int argc, char *argv[]);
+
+#endif

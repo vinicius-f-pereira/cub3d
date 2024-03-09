@@ -10,13 +10,15 @@ CC_FLAGS			=	-Wall		\
 #≻───░⋆ ✪ PROJECT DIRECTORIES & FILES ✪ ⋆░───────────────────────────────────≺#
 SRC_DIR				=	src
 INCLUDE_DIR			=	include
-INCLUDE_FILES		=	cub3d.h
+INCLUDE_FILES		=	cub3d.h		\
+						import.h
 INCLUDES			=	$(addprefix $(INCLUDE_DIR)/, $(INCLUDE_FILES))
 BUILD_DIR			=	build
-VALIDATION_FILES	=	validation.c
+IMPORT_FILES		=	import.c		\
+						validation.c
 SRC_FILES			=	main.c
 SRCS				=	$(addprefix $(SRC_DIR)/, SRC_FILES) 					\
-						$(addprefix $(SRC_DIR)/validation/, VALIDATION_FILES)
+						$(addprefix $(SRC_DIR)/import/, IMPORT_FILES)
 OBJS				=	$(SRC_FILES:.c=.o)
 BUILDS				=	$(addprefix $(BUILD_DIR)/, $(OBJS))
 
@@ -100,8 +102,10 @@ $(LIBFT_LIB): $(LIBFT_DIR)
 	@ make -s -C $(LIBFT_DIR)
 
 $(MLX42_LIB): $(MLX42_DIR)
-	@ cd $(MLX42_DIR) &&		\
-	  cmake -B build &&			\
+	@ cd $(MLX42_DIR) &&												\
+	  sed -i 's/cmake_minimum_required (VERSION 3.18.0)/				\
+	  	cmake_minimum_required (VERSION 3.16.0)/g' CMakeLists.txt && 	\
+	  cmake -B build &&													\
 	  cmake --build build -j4
 
 $(LIBFT_DIR):
