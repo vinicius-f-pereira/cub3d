@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:29:08 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/10 16:13:47 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:43:08 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,21 @@ enum e_elements
 	E_ALL = 63
 };
 
+typedef struct s_import_elements
+{
+	int		fd;
+	char	*line;
+	t_level	*lvl;
+}	t_import_elements;
+
 int		basic_validation(int argc, char *argv[]);
+
 int		error_message(const char *error_msg);
 void	exit_error_message(const char *error_msg, const int error_code);
-void	get_elements(int fd, t_level *lvl);
+void	get_elements_error(t_import_elements *lvl_el,
+	const char *error_msg, const int error_code);
+
+void	get_elements(t_import_elements *lvl_el);
 int		fill_valid_rgb_number(const char *str, unsigned char *dest);
 
 #endif

@@ -6,28 +6,20 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:11:59 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/10 16:25:07 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:43:26 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "import.h"
 
-static void	free_line_error(char *line, const char *error_msg,
-	const int error_code)
-{
-	free(line);
-	if (error_msg)
-		exit_error_message(error_msg, error_code);
-	exit (error_code);
-}
-
-static int	get_rgb(unsigned char dest[3], const char *str)
+static void	get_rgb(unsigned char dest[3], const char *str,
+	t_import_elements *lvl_el)
 {
 	int		index;
 	int		i;
 
 	if (!fill_valid_rgb_number(str, dest))
-		return (error_message("Bad RGB specification"));
+		get_elements_error(lvl_el, "Bad RGB specification", 7);
 	i = -1;
 	index = 0;
 	while (str[++i] && str[i] != '\n')
@@ -37,20 +29,23 @@ static int	get_rgb(unsigned char dest[3], const char *str)
 		if (str[i] == ',' && ++index)
 		{
 			if (index > 2)
-				return (error_message("Bad RGB specification"));
+				get_elements_error(lvl_el, "Bad RGB specification", 8);
 			if (!fill_valid_rgb_number(str + i + 1, dest + index))
-				return (error_message("Bad RGB specification"));
+				get_elements_error(lvl_el, "Bad RGB specification", 9);
 			continue ;
 		}
-		return (error_message("Bad RGB specification"));
+		get_elements_error(lvl_el, "Bad RGB specification", 10);
 	}
 	if (index == 2)
-		return (1);
-	return (error_message("Bad RGB specification"));
+		return ;
+	get_elements_error(lvl_el, "Bad RGB specification", 11);
 }
 
-static int	copy_element(int index, t_level *lvl, const char *str)
+static void	copy_element(int index, t_import_elements *lvl_el, const char *str)
 {
+	t_level	*lvl;
+
+	lvl = lvl_el->lvl;
 	if (index == NO)
 		ft_memcpy(lvl->no, str, ft_strlen(str) - 1);
 	else if (index == SO)
@@ -60,13 +55,12 @@ static int	copy_element(int index, t_level *lvl, const char *str)
 	else if (index == EA)
 		ft_memcpy(lvl->ea, str, ft_strlen(str) - 1);
 	else if (index == F)
-		return (get_rgb(lvl->f, str));
+		get_rgb(lvl->f, str, lvl_el);
 	else if (index == C)
-		return (get_rgb(lvl->c, str));
-	return (1);
+		get_rgb(lvl->c, str, lvl_el);
 }
 
-static void	get_element(char *line, t_level *lvl, int *gotten_elements)
+static void	get_element(t_import_elements *lvl_el, int *gotten_elements)
 {
 	const char	*elements[] = {"NO ", "SO ", "WE ", "EA ", "F ", "C ", NULL};
 	short int	i;
@@ -77,37 +71,36 @@ static void	get_element(char *line, t_level *lvl, int *gotten_elements)
 	while (elements[++i])
 	{
 		j = ft_strlen(elements[i]);
-		if (!ft_strncmp(elements[i], line, j))
+		if (!ft_strncmp(elements[i], lvl_el->line, j))
 		{
-			while (ft_isspace(line[j]))
+			while (ft_isspace(lvl_el->line[j]))
 				j++;
 			index = 1 << i;
 			if (*gotten_elements & index)
-				free_line_error(line, "Repeated element", 6);
-			if (!copy_element(index, lvl, line + j))
-				free_line_error(line, NULL, 7);
+				get_elements_error(lvl_el, "Repeated element", 6);
+			copy_element(index, lvl_el, lvl_el->line + j);
 			*gotten_elements |= index;
 			return ;
 		}
 	}
-	free_line_error(line, "Invalid or missing element", 8);
+	get_elements_error(lvl_el, "Invalid or missing element", 8);
 }
 
-void	get_elements(int fd, t_level *lvl)
+void	get_elements(t_import_elements *lvl_el)
 {
-	char	*line;
 	int		gotten_elements;
 
 	gotten_elements = 0;
 	while (gotten_elements != E_ALL)
 	{
-		line = get_next_line(fd);
-		if (!line)
-			exit_error_message("Missing elements", 4);
-		if (ft_strlen(line) > MAX_COLS)
-			free_line_error(line, "MAX_COLS exceeded", 5);
-		if (*line != '\n')
-			get_element(line, lvl, &gotten_elements);
-		free (line);
+		lvl_el->line = get_next_line(lvl_el->fd);
+		if (!lvl_el->line)
+			get_elements_error(lvl_el, "Missing elements", 4);
+		if (ft_strlen(lvl_el->line) > MAX_COLS)
+			get_elements_error(lvl_el, "MAX_COLS exceeded", 5);
+		if (*lvl_el->line != '\n')
+			get_element(lvl_el, &gotten_elements);
+		free (lvl_el->line);
 	}
+	lvl_el->line = NULL;
 }

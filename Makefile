@@ -18,7 +18,7 @@ BUILD_DIR			=	build
 SRCS				=	$(addprefix $(SRC_DIR)/,				\
 							main.c)
 SRCS 				+=	$(addprefix $(SRC_DIR)/import/,			\
-							error_msg.c							\
+							errors.c							\
 							get_elements.c						\
 							import.c							\
 							validations.c)
