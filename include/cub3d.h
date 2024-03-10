@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:38:52 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/09 16:20:00 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/10 03:13:11 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@
 
 typedef struct s_level
 {
-	char	no[MAX_COLS + 1];
-	char	so[MAX_COLS + 1];
-	char	we[MAX_COLS + 1];
-	char	ea[MAX_COLS + 1];
-	char	f[MAX_COLS + 1];
-	char	c[MAX_COLS + 1];
-	char	map[MAX_ROWS + 1][MAX_COLS + 1];
+	char			no[MAX_COLS + 1];
+	char			so[MAX_COLS + 1];
+	char			we[MAX_COLS + 1];
+	char			ea[MAX_COLS + 1];
+	unsigned char	f[3];
+	unsigned char	c[3];
+	char			map[MAX_ROWS + 1][MAX_COLS + 1];
 }	t_level;
 
 int	import(int argc, char *argv[], t_level *lvl);

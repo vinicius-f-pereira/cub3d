@@ -14,14 +14,15 @@ INCLUDE_FILES		=	cub3d.h		\
 						import.h
 INCLUDES			=	$(addprefix $(INCLUDE_DIR)/, $(INCLUDE_FILES))
 BUILD_DIR			=	build
-IMPORT_FILES		=	error_msg.c		\
-						get_elements.c	\
-						import.c		\
-						validation.c
-SRC_FILES			=	main.c
-SRCS				=	$(addprefix $(SRC_DIR)/, SRC_FILES) 					\
-						$(addprefix $(SRC_DIR)/import/, IMPORT_FILES)
-OBJS				=	$(SRC_FILES:.c=.o)
+#≻───░file's paths
+SRCS				=	$(addprefix $(SRC_DIR)/,				\
+							main.c)
+SRCS 				+=	$(addprefix $(SRC_DIR)/import/,			\
+							error_msg.c							\
+							get_elements.c						\
+							import.c							\
+							validations.c)
+OBJS	 			=	$(SRCS:%.c=%.o)
 BUILDS				=	$(addprefix $(BUILD_DIR)/, $(OBJS))
 
 #≻───░⋆ ✪ LIBFT EXTRA ✪ ⋆░───────────────────────────────────────────────────≺#
@@ -57,6 +58,22 @@ MAGENTA				=	\033[0;35m
 GREEN				=	\033[0;32m
 DEFAULT 			=	\033[0:0m
 
+#≻───░⋆ ✪ FUNCTIONS ✪ ⋆░─────────────────────────────────────────────────────≺#
+
+define compile
+	@ printf "$(MAGENTA)$< $(BLUE)->$(GREEN) $@$(DEFAULT)\n"
+	@ $(CC) -c $<				\
+	  -I./$(INCLUDE_DIR)		\
+	  -I./$(MLX42_INCLUDE_DIR)	\
+	  -I./$(LIBFT_INCLUDE_DIR)	\
+	  -o $@						\
+	  $(CC_FLAGS)
+endef
+
+define create_objects_dir
+	@ mkdir -p $(dir $@)
+endef
+
 #≻───░⋆ ✪ RULES ✪ ⋆░─────────────────────────────────────────────────────────≺#
 .PHONY: all bonus clean fclean clear re
 
@@ -69,7 +86,8 @@ debug: CC_FLAGS += -DDEBUG
 debug: NAME = cub3d_debug
 debug: all
 
-$(NAME): $(MLX42_LIB) $(LIBFT_LIB) $(BUILD_DIR) $(BUILDS) $(INCLUDES)
+
+$(NAME): $(MLX42_LIB) $(LIBFT_LIB) $(BUILDS) $(INCLUDES)
 	@ $(CC) -o $(NAME)	\
 	  $(BUILDS)			\
 	  -I./$(INCLUDE_DIR)\
@@ -78,17 +96,9 @@ $(NAME): $(MLX42_LIB) $(LIBFT_LIB) $(BUILD_DIR) $(BUILDS) $(INCLUDES)
 	  $(CC_FLAGS)
 	@ printf "$(GREEN)$@$(DEFAULT) successfully generated\n"
 
-$(BUILD_DIR):
-	@ mkdir $(BUILD_DIR)
-
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(INCLUDES)
-	@ printf "$(MAGENTA)$< $(BLUE)->$(GREEN) $@$(DEFAULT)\n"
-	@ $(CC) -c $<				\
-	  -I./$(INCLUDE_DIR)		\
-	  -I./$(MLX42_INCLUDE_DIR)	\
-	  -I./$(LIBFT_INCLUDE_DIR)	\
-	  -o $@						\
-	  $(CC_FLAGS)
+$(BUILD_DIR)/%.o: %.c
+	$(call create_objects_dir)
+	$(call compile)
 
 clean_cub3d:
 	@ rm -rf $(BUILD_DIR)
@@ -137,5 +147,4 @@ clear_MLX:
 clear_libft:
 	@ rm -rf $(LIBFT_DIR)
 
-clear: clear_MLX clear_libft
-	@ rm -rf fractol
+clear: clear_MLX clear_libft fclean

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   import.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:28:53 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/09 16:57:52 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/10 03:14:22 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	import(int argc, char *argv[], t_level *lvl)
 	fd = basic_validation(argc, argv);
 	if (fd <= 0)
 		return (0);
-	get_elements(fd, lvl);
+	if (!get_elements(fd, lvl))
+		return (0);
 	close(fd);
 	return (1);
 }

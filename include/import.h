@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   import.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:29:08 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/09 16:36:51 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/10 02:23:31 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ enum e_elements
 int	basic_validation(int argc, char *argv[]);
 int	error_message(const char *error_msg);
 int	get_elements(int fd, t_level *lvl);
+int	valid_rgb_number(const char *str);
 
 #endif

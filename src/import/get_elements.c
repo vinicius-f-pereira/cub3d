@@ -3,26 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   get_elements.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:11:59 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/09 16:24:02 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/10 03:07:20 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "import.h"
 
-enum e_elements
+int	get_rgb(unsigned char *dest, const char *str)
 {
-	NO = 1,
-	SO = 2,
-	WE = 4,
-	EA = 8,
-	F = 16,
-	C = 32
-};
+	int		numbers[3];
+	int		index;
+	int		i;
 
-void	copy_element(int index, t_level *lvl, const char *str)
+	numbers[0] = valid_rgb_number(str);
+	i = -1;
+	index = 0;
+	while (str[++i] && str[i] != '\n')
+	{
+		if (ft_isdigit(str[i]))
+			continue;
+		if (str[i] == ',' && ++index)
+		{
+			if (index > 2)
+				return (error_message("Bad RGB specification"));
+			numbers[index] = valid_rgb_number(str + i + 1);
+			continue;
+		}
+		return (error_message("Bad RGB specification"));
+	}
+	if (numbers[0] == -1 || numbers[1] == -1 || numbers[2] == -1)
+		return (error_message("Bad RGB specification"));
+	dest[0] = (unsigned char)numbers[0];
+	dest[1] = (unsigned char)numbers[1];
+	dest[2] = (unsigned char)numbers[2];
+	return (1);
+}
+
+int	copy_element(int index, t_level *lvl, const char *str)
 {
 	if (index == NO)
 		ft_memcpy(lvl->no, str, ft_strlen(str) - 1);
@@ -33,9 +53,10 @@ void	copy_element(int index, t_level *lvl, const char *str)
 	else if (index == EA)
 		ft_memcpy(lvl->ea, str, ft_strlen(str) - 1);
 	else if (index == F)
-		ft_memcpy(lvl->f, str, ft_strlen(str) - 1);
+		return(get_rgb(lvl->f_rgb, str));
 	else if (index == C)
-		ft_memcpy(lvl->c, str, ft_strlen(str) - 1);
+		return(get_rgb(lvl->c_rgb, str));
+	return (1);
 }
 
 int	get_element(char *line, t_level *lvl, int *gotten_elements)
@@ -51,15 +72,13 @@ int	get_element(char *line, t_level *lvl, int *gotten_elements)
 		j = ft_strlen(elements[i]);
 		if (!ft_strncmp(elements[i], line, j))
 		{
-			while (!ft_isspace(line[j]))
+			while (ft_isspace(line[j]))
 				j++;
-			index = (int)pow(2.0, (double)i);
+			index = 1 << i;
 			if (*gotten_elements & index)
-			{
-				ft_putendl_fd("Repeated element", 2);
+				return (error_message("Repeated element"));
+			if (!copy_element(index, lvl, line + j))
 				return (0);
-			}
-			copy_element(index, lvl, line[j]);
 			*gotten_elements |= index;
 			return (1);
 		}
@@ -76,10 +95,8 @@ int	free_line_error(char *line, const char *error_msg)
 int	get_elements(int fd, t_level *lvl)
 {
 	char	*line;
-	int		is_map;
 	int		gotten_elements;
 
-	is_map = 0;
 	gotten_elements = 0;
 	while (gotten_elements != E_ALL)
 	{
@@ -88,7 +105,7 @@ int	get_elements(int fd, t_level *lvl)
 			return (error_message("Missing elements"));
 		if (ft_strlen(line) > MAX_COLS)
 			return (free_line_error(line, "MAX_COLS exceeded"));
-		if (*line != '\0')
+		if (*line != '\n')
 		{
 			if (!get_element(line, lvl, &gotten_elements))
 				return (free_line_error(line, "Invalid element"));
