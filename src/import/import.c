@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   import.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:28:53 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/10 18:02:36 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/11 00:43:24 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ void	import(int argc, char *argv[], t_level *lvl)
 	lvl_el.lvl = lvl;
 	lvl_el.line = NULL;
 	get_elements(&lvl_el);
-	//get_map(fd, lvl);
+	get_map(&lvl_el);
 	close(lvl_el.fd);
 }

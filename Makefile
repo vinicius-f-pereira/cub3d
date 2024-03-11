@@ -17,9 +17,12 @@ BUILD_DIR			=	build
 #≻───░file's paths
 SRCS				=	$(addprefix $(SRC_DIR)/,				\
 							main.c)
+SRCS				+=	$(addprefix $(SRC_DIR)/debug_tools/,	\
+							print_cub_import.c)
 SRCS 				+=	$(addprefix $(SRC_DIR)/import/,			\
 							errors.c							\
 							get_elements.c						\
+							get_map.c							\
 							import.c							\
 							validations.c)
 OBJS	 			=	$(SRCS:%.c=%.o)

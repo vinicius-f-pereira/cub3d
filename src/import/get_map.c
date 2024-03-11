@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:08:39 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/10 18:58:35 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/11 00:52:15 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,18 @@ void	get_map(t_import_elements *lvl_el)
 		if (*lvl_el->line == '\n')
 		{
 			if (valid_lines)
-				get_elements_error(lvl_el, "No blank lines in the map allowed", 21);
+				get_elements_error(lvl_el, "Map with blank row", 21);
 			free (lvl_el->line);
-			get_next_line(lvl_el->fd);
+			lvl_el->line = get_next_line(lvl_el->fd);
 			continue ;
 		}
-		valid_lines++;
-		lvl_el->line = get_next_line(lvl_el->fd);
-		if (!lvl_el->line)
-			get_elements_error(lvl_el, "Missing elements", 4);
 		if (ft_strlen(lvl_el->line) > MAX_COLS)
-			get_elements_error(lvl_el, "MAX_COLS exceeded", 5);
-		if (*lvl_el->line != '\n')
-			get_element(lvl_el, &gotten_elements);
+			get_elements_error(lvl_el, "Map MAX_COLS exceeded", 23);
+		if (++valid_lines > MAX_ROWS)
+			get_elements_error(lvl_el, "Map MAX_ROWS exceeded", 22);
+		ft_memcpy(lvl_el->lvl->map[valid_lines - 1], lvl_el->line,
+			ft_strlen(lvl_el->line) - 1);
 		free (lvl_el->line);
+		lvl_el->line = get_next_line(lvl_el->fd);
 	}
 }

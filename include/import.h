@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   import.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:29:08 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/10 18:43:08 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/11 00:45:44 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,7 @@ void	get_elements_error(t_import_elements *lvl_el,
 
 void	get_elements(t_import_elements *lvl_el);
 int		fill_valid_rgb_number(const char *str, unsigned char *dest);
+
+void	get_map(t_import_elements *lvl_el);
 
 #endif
