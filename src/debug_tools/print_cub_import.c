@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 01:06:31 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/11 01:29:50 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/11 22:47:26 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	print_cub_import(t_level *lvl)
 {
 	int	r;
 	int	g;
-	int b;
+	int	b;
 	int	i;
-	
+
 	printf("NO: %s\n", lvl->no);
 	printf("SO: %s\n", lvl->so);
 	printf("EA: %s\n", lvl->ea);

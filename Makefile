@@ -24,6 +24,7 @@ SRCS 				+=	$(addprefix $(SRC_DIR)/import/,			\
 							get_elements.c						\
 							get_map.c							\
 							import.c							\
+							map_validations.c					\
 							validations.c)
 OBJS	 			=	$(SRCS:%.c=%.o)
 BUILDS				=	$(addprefix $(BUILD_DIR)/, $(OBJS))
