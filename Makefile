@@ -85,11 +85,17 @@ all: $(NAME)
 
 bonus: $(NAME)
 
+
+# debug:
+# 	$(call clean_cub3d)
+# 	CC_FLAGS += -DDEBUG
+# 	NAME = cub3d_debug
+# 	$(call all)
+
 debug: clean_cub3d
 debug: CC_FLAGS += -DDEBUG
 debug: NAME = cub3d_debug
 debug: all
-
 
 $(NAME): $(MLX42_LIB) $(LIBFT_LIB) $(BUILDS) $(INCLUDES)
 	@ $(CC) -o $(NAME)	\
@@ -109,8 +115,7 @@ clean_cub3d:
 
 clean: clean_MLX clean_libft clean_cub3d
 
-fclean: fclean_MLX fclean_libft clean
-	@ rm -rf $(NAME)
+fclean: fclean_MLX fclean_libft fclean_cub3d
 
 re: fclean all
 
@@ -138,6 +143,10 @@ clean_MLX: $(MLX42_DIR)
 		find $(MLX42_BUILD_DIR) -mindepth 1 !			\
 		-name '$(MLX42_LIB_NAME)' -exec rm -rf {} +;	\
 	  fi
+
+fclean_cub3d: clean_cub3d
+	@ rm -rf $(NAME)
+	@ rm -rf $(NAME)_debug
 
 fclean_libft: $(LIBFT_DIR)
 	@ make -s -C $(LIBFT_DIR) fclean

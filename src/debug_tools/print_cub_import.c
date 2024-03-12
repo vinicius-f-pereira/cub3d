@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 01:06:31 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/11 22:47:26 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/12 14:28:48 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,8 @@ void	print_cub_import(t_level *lvl)
 	int	b;
 	int	i;
 
-	printf("NO: %s\n", lvl->no);
-	printf("SO: %s\n", lvl->so);
-	printf("EA: %s\n", lvl->ea);
-	printf("WE: %s\n", lvl->we);
+	printf("NO: %s\nSO: %s\nEA: %s\nWE: %s\n", lvl->no, lvl->so, lvl->ea,
+		lvl->we);
 	r = (int)lvl->f[0];
 	g = (int)lvl->f[1];
 	b = (int)lvl->f[2];
@@ -35,4 +33,5 @@ void	print_cub_import(t_level *lvl)
 	i = -1;
 	while (lvl->map[++i][0])
 		printf("%s\n", lvl->map[i]);
+	printf("\n");
 }
