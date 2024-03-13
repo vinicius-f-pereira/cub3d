@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:48:25 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/12 14:50:45 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/13 11:14:32 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,13 @@ static void	check_wall(t_level *lvl, int start[2], int i_step, int j_step)
 	{
 		if (lvl->map[start[0]][start[1]] == '1')
 			return ;
+		if (lvl->map[start[0]][start[1]] == ' ')
+			break ;
 		start[0] += i_step;
 		start[1] += j_step;
 	}
 	exit_error_message("🎵 We don't need no education...\n"
-		"🧱 Missing another brick in the wall\n\n", 33);
+		"🧱 Missing another brick in the wall", 33);
 }
 
 static void	walls_around(t_level *lvl, int i, int j)
@@ -74,5 +76,5 @@ void	map_validation(t_level *lvl)
 		}
 	}
 	if (!count_player)
-		exit_error_message("One player needed in the map", 32);
+		exit_error_message("One player needed in the map", 31);
 }

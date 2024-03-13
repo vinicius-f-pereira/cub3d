@@ -85,13 +85,6 @@ all: $(NAME)
 
 bonus: $(NAME)
 
-
-# debug:
-# 	$(call clean_cub3d)
-# 	CC_FLAGS += -DDEBUG
-# 	NAME = cub3d_debug
-# 	$(call all)
-
 debug: clean_cub3d
 debug: CC_FLAGS += -DDEBUG
 debug: NAME = cub3d_debug

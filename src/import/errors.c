@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_msg.c                                        :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:46:34 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/10 18:42:26 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:07:05 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	error_message(const char *error_msg)
 {
-	ft_putendl_fd("Error", STDERR_FILENO);
+	ft_putendl_fd(ERROR, STDERR_FILENO);
 	ft_putendl_fd((char *)error_msg, STDERR_FILENO);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:48:25 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/12 14:49:11 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/13 11:20:43 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static void	check_wall(t_level *lvl, int start[2], int i_step, int j_step)
 	{
 		if (lvl->map[start[0]][start[1]] == '1')
 			return ;
+		if (lvl->map[start[0]][start[1]] == ' ')
+			break ;
 		start[0] += i_step;
 		start[1] += j_step;
 	}
