@@ -11,7 +11,8 @@ CC_FLAGS			=	-Wall		\
 SRC_DIR				=	src
 INCLUDE_DIR			=	include
 INCLUDE_FILES		=	cub3d.h		\
-						import.h
+						import.h	\
+						minimap.h
 INCLUDES			=	$(addprefix $(INCLUDE_DIR)/, $(INCLUDE_FILES))
 BUILD_DIR			=	build
 #≻───░file's paths
@@ -26,6 +27,8 @@ SRCS 				+=	$(addprefix $(SRC_DIR)/import/,			\
 							import.c							\
 							map_validations.c					\
 							validations.c)
+SRCS				+=	$(addprefix $(SRC_DIR)/minimap/,		\
+							minimap.c)
 OBJS	 			=	$(SRCS:%.c=%.o)
 BUILDS				=	$(addprefix $(BUILD_DIR)/, $(OBJS))
 
