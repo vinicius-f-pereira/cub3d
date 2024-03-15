@@ -6,7 +6,7 @@
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:09:36 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/15 16:54:55 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/03/15 19:48:50 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	square_constructor(mlx_image_t *img, uint32_t color)
 		while (++j < img->height)
 			mlx_put_pixel(img, i, j, color);
 	}
+
 }
 
 void	minimap(t_cub *cub)
