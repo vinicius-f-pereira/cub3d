@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:09:36 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/15 16:54:55 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/03/15 22:10:33 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,35 @@ void	square_constructor(mlx_image_t *img, uint32_t color)
 	}
 }
 
+void	square_size_and_border(t_cub *cub)
+{
+	int	x;
+	int	y;
+
+	x = MINI_WIDTH / cub->level.x_size;
+	y = MINI_HEGHT / cub->level.y_size;
+	if (x < y)
+		cub->mini.side = x;
+	else
+		cub->mini.side = y;
+	cub->mini.border = (float)cub->mini.side * BORDER;
+	if (cub->mini.border <= 0)
+		cub->mini.border = 1;
+	cub->mini.side -= 2 * cub->mini.border;
+}
+
 void	minimap(t_cub *cub)
 {
-	cub->mini.wall = mlx_new_image(cub->mlx, 30, 30);
-	cub->mini.floor = mlx_new_image(cub->mlx, 30, 30);
-	cub->mini.player = mlx_new_image(cub->mlx, 7, 7);
-	square_constructor(cub->mini.wall, color_rgba(255, 255, 255, 255));
-	square_constructor(cub->mini.floor, color_rgba(0, 0, 0, 255));
-	square_constructor(cub->mini.player, color_rgba(0, 100, 0, 255));
-	if (mlx_image_to_window(cub->mlx, cub->mini.wall, 385, 285) < 0)
-		exit(99);
-	if (mlx_image_to_window(cub->mlx, cub->mini.wall, 416, 285) < 0)
-		exit(99);
-	if (mlx_image_to_window(cub->mlx, cub->mini.floor, 385, 316) < 0)
-		exit(99);
-	if (mlx_image_to_window(cub->mlx, cub->mini.floor, 416, 316) < 0)
-		exit(99);
-	if (mlx_image_to_window(cub->mlx, cub->mini.player, 417, 317) < 0)
-		exit(99);
+	int	side;
+
+	square_size_and_border(cub);
+	side = cub->mini.side;
+	cub->mini.wall = mlx_new_image(cub->mlx, side, side);
+	cub->mini.floor = mlx_new_image(cub->mlx, side, side);
+	cub->mini.player = mlx_new_image(cub->mlx, side / 4, side / 4);
+	square_constructor(cub->mini.wall, WHITE);
+	square_constructor(cub->mini.floor, BLACK);
+	square_constructor(cub->mini.player, BLUE);
+	draw_map(cub);
 	mlx_loop(cub->mlx);
 }
