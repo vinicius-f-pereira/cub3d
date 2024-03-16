@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 01:06:31 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/12 14:28:48 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/16 09:00:44 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ void	print_cub_import(t_level *lvl)
 	i = -1;
 	while (lvl->map[++i][0])
 		printf("%s\n", lvl->map[i]);
-	printf("\n");
+	printf("\nCOLS: %-3ld ROWS: %-3ld\n\n", lvl->x_size, lvl->y_size);
 }

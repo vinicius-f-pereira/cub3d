@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 20:06:13 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/15 22:08:05 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/16 08:56:59 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	draw_map(t_cub *cub)
 		while (cub->level.map[i][++j])
 		{
 			c = cub->level.map[i][j];
-			pos[0] = i * (cub->mini.border + cub->mini.side) + MINI_X;
-			pos[1] = j * (cub->mini.border + cub->mini.side) + MINI_Y;
+			pos[0] = j * (cub->mini.border + cub->mini.side) + MINI_X;
+			pos[1] = i * (cub->mini.border + cub->mini.side) + MINI_Y;
 			if (c == '1' && mlx_image_to_window(cub->mlx,
 					cub->mini.wall, pos[0], pos[1]) < 0)
 				exit (42);
