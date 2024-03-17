@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:38:52 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/15 21:18:04 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/17 13:00:26 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_level
 typedef struct s_minimap
 {
 	mlx_image_t	*wall;
-	mlx_image_t *floor;
+	mlx_image_t	*floor;
 	mlx_image_t	*player;
 	int			side;
 	int			border;

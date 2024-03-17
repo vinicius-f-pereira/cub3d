@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_drawing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 20:06:13 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/16 08:56:59 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/17 13:01:18 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	draw_map(t_cub *cub)
 				&& mlx_image_to_window(cub->mlx,
 					cub->mini.floor, pos[0], pos[1]) < 0)
 				exit (42);
-			if (ft_strchr("NSEW", c )
+			if (ft_strchr("NSEW", c)
 				&& mlx_image_to_window(cub->mlx, cub->mini.player,
 					pos[0] + 3 * cub->mini.side / 8,
 					pos[1] + 3 * cub->mini.side / 8) < 0)
