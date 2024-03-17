@@ -28,6 +28,7 @@ SRCS 				+=	$(addprefix $(SRC_DIR)/import/,			\
 							map_validations.c					\
 							validations.c)
 SRCS				+=	$(addprefix $(SRC_DIR)/minimap/,		\
+							map_drawing.c						\
 							minimap.c)
 OBJS	 			=	$(SRCS:%.c=%.o)
 BUILDS				=	$(addprefix $(BUILD_DIR)/, $(OBJS))

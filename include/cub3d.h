@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:38:52 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/15 16:26:26 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/17 13:00:26 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@
 # define WIDTH 800
 # define HEIGHT 600
 
+//COLORS
+# define BLACK 0x000000ff
+# define WHITE 0xffffffff
+# define RED 0xff0000ff
+# define GREEN 0x00ff00ff
+# define BLUE 0x0000ffff
+
 typedef struct s_level
 {
 	char			no[MAX_COLS + 1];
@@ -39,13 +46,17 @@ typedef struct s_level
 	unsigned char	f[3];
 	unsigned char	c[3];
 	char			map[MAX_ROWS + 1][MAX_COLS + 1];
+	size_t			x_size;
+	size_t			y_size;
 }	t_level;
 
 typedef struct s_minimap
 {
 	mlx_image_t	*wall;
-	mlx_image_t *floor;
+	mlx_image_t	*floor;
 	mlx_image_t	*player;
+	int			side;
+	int			border;
 }	t_minimap;
 
 typedef struct s_cub
