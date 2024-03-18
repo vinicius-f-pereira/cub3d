@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initializing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 16:29:14 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/18 10:15:59 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/03/18 16:20:13 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ void	set_initial_player_pos(t_cub *cub)
 		{
 			if (ft_strchr("NSEW", cub->level.map[i][j]))
 			{
-				cub->player.pos_x = (double)i + 0.5;
-				cub->player.pos_y = (double)j + 0.5;
+				cub->player.pos_y = (double)i + 0.5;
+				cub->player.pos_x = (double)j + 0.5;
 				if (cub->level.map[i][j] == 'E')
 					cub->player.dir_x = 1;
 				else if (cub->level.map[i][j] == 'N')
-					cub->player.dir_y = 1;
+					cub->player.dir_y = -1;
 				else if (cub->level.map[i][j] == 'W')
 					cub->player.dir_x = -1;
 				else if (cub->level.map[i][j] == 'S')
-					cub->player.dir_y = -1;
+					cub->player.dir_y = 1;
 			}
 		}
 	}
