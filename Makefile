@@ -30,6 +30,8 @@ SRCS 				+=	$(addprefix $(SRC_DIR)/import/,			\
 SRCS				+=	$(addprefix $(SRC_DIR)/minimap/,		\
 							map_drawing.c						\
 							minimap.c)
+SRCS				+=	$(addprefix $(SRC_DIR)/keys/,			\
+							esc_key.c)
 OBJS	 			=	$(SRCS:%.c=%.o)
 BUILDS				=	$(addprefix $(BUILD_DIR)/, $(OBJS))
 
