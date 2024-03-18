@@ -112,7 +112,7 @@ $(BUILD_DIR)/%.o: %.c
 clean_cub3d:
 	@ rm -rf $(BUILD_DIR)
 
-clean: clean_MLX clean_libft clean_cub3d
+clean: clean_MLX clean_cub3d
 
 fclean: fclean_MLX fclean_libft fclean_cub3d
 
