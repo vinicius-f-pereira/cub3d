@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:38:52 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/17 13:00:26 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/03/17 21:16:35 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@
 # define GREEN 0x00ff00ff
 # define BLUE 0x0000ffff
 
+# define M_PI 3.14159265358979323846
+# define FOV 0.66
+
 typedef struct s_level
 {
 	char			no[MAX_COLS + 1];
@@ -59,11 +62,28 @@ typedef struct s_minimap
 	int			border;
 }	t_minimap;
 
+typedef struct s_player
+{
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+}	t_player;
+
+typedef struct s_plane
+{
+	double	x;
+	double	y;
+}	t_plane;
+
+
 typedef struct s_cub
 {
 	mlx_t		*mlx;
 	t_level		level;
 	t_minimap	mini;
+	t_player	player;
+	t_plane		plane;
 }	t_cub;
 
 void	import(int argc, char *argv[], t_level *lvl);
