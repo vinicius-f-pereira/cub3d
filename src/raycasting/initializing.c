@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 16:29:14 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/17 21:40:36 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/18 10:12:34 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	set_initial_player_pos(t_cub *cub)
 			{
 				cub->player.pos_x = (double)i + 0.5;
 				cub->player.pos_y = (double)j + 0.5;
-				if (cub->level.map[i][j] == "E")
+				if (cub->level.map[i][j] == 'E')
 					cub->player.dir_x = 1;
 				else if (cub->level.map[i][j] == 'N')
 					cub->player.dir_y = 1;
