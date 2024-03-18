@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:11:23 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/15 21:53:44 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/18 17:22:36 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "cub3d.h"
 
 # define MINI_WIDTH 700
-# define MINI_HEGHT 500
+# define MINI_HEIGHT 500
 # define MINI_X 10
 # define MINI_Y 10
 # define BORDER 0.05

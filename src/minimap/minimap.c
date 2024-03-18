@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:09:36 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/15 22:10:33 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/18 17:22:25 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	square_size_and_border(t_cub *cub)
 	int	y;
 
 	x = MINI_WIDTH / cub->level.x_size;
-	y = MINI_HEGHT / cub->level.y_size;
+	y = MINI_HEIGHT / cub->level.y_size;
 	if (x < y)
 		cub->mini.side = x;
 	else
