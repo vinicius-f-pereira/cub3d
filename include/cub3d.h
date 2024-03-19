@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:38:52 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/17 21:16:35 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/19 15:29:35 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <math.h>
 # include <stdio.h>
 # include <string.h>
+# include <float.h>
 
 # include "libft.h"
 # include "MLX42.h"
@@ -25,6 +26,9 @@
 //.cub files definitions
 # define MAX_ROWS 100
 # define MAX_COLS 80
+
+//raycasting
+# define N_RAYS 60
 
 //MLX definitions
 # define WIDTH 800
@@ -62,12 +66,26 @@ typedef struct s_minimap
 	int			border;
 }	t_minimap;
 
+typedef struct s_ray
+{
+	double	dir_x;
+	double	dir_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	int		step_x;
+	int		step_y;
+	double	len;
+}	t_ray;
+
 typedef struct s_player
 {
 	double	pos_x;
 	double	pos_y;
 	double	dir_x;
 	double	dir_y;
+	t_ray	*rays[N_RAYS];
 }	t_player;
 
 typedef struct s_plane
