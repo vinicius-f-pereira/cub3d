@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:38:52 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/19 15:29:35 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/19 17:36:48 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <math.h>
 # include <stdio.h>
 # include <string.h>
-# include <float.h>
 
 # include "libft.h"
 # include "MLX42.h"
@@ -68,6 +67,7 @@ typedef struct s_minimap
 
 typedef struct s_ray
 {
+	int		index;
 	double	dir_x;
 	double	dir_y;
 	double	side_dist_x;

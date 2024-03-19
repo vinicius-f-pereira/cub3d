@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:09:36 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/19 10:40:12 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:14:20 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,6 @@ void	minimap(t_cub *cub)
 	square_constructor(cub->mini.wall, WHITE);
 	square_constructor(cub->mini.floor, BLACK);
 	square_constructor(cub->mini.player, BLUE);
+	draw_map(cub);
+	mlx_loop(cub->mlx);
 }
