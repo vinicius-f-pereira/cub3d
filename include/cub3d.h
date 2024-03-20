@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:38:52 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/19 17:36:48 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/20 13:45:07 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define MAX_COLS 80
 
 //raycasting
-# define N_RAYS 60
+# define N_RAYS 3
 
 //MLX definitions
 # define WIDTH 800
@@ -41,7 +41,7 @@
 # define BLUE 0x0000ffff
 
 # define M_PI 3.14159265358979323846
-# define FOV 0.66
+# define FOV 1.0
 
 typedef struct s_level
 {
@@ -76,6 +76,7 @@ typedef struct s_ray
 	double	delta_dist_y;
 	int		step_x;
 	int		step_y;
+	int		side;
 	double	len;
 }	t_ray;
 
@@ -106,6 +107,7 @@ typedef struct s_cub
 
 void	import(int argc, char *argv[], t_level *lvl);
 void	minimap(t_cub *cub);
+void	raycasting(t_cub *cub);
 
 //DEBUG
 void	print_cub_import(t_level *lvl);

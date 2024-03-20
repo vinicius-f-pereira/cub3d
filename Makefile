@@ -32,6 +32,10 @@ SRCS				+=	$(addprefix $(SRC_DIR)/minimap/,		\
 							minimap.c)
 SRCS				+=	$(addprefix $(SRC_DIR)/keys/,			\
 							esc_key.c)
+SRCS				+=	$(addprefix $(SRC_DIR)/raycasting/,		\
+							initializing.c						\
+							raycasting.c						\
+							rotation.c)
 OBJS	 			=	$(SRCS:%.c=%.o)
 BUILDS				=	$(addprefix $(BUILD_DIR)/, $(OBJS))
 

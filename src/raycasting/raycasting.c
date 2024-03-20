@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 21:41:45 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/19 17:53:09 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/20 13:51:33 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,29 +63,28 @@ void	define_ray_dir(t_cub *cub, t_ray *ray)
 void	dda(t_cub *cub, t_ray *ray, int map_x, int map_y)
 {
 	int	hit;
-	int	side;
 
 	hit = 0;
 	while (!hit)
 	{
-		if (ray->side_dist_x < ray->delta_dist_y)
+		if (ray->side_dist_x < ray->side_dist_y)
 		{
 			ray->side_dist_x += ray->delta_dist_x;
 			map_x += ray->step_x;
-			side = 0;
+			ray->side = ray->step_x << 1;
 		}
 		else
 		{
 			ray->side_dist_y += ray->delta_dist_y;
 			map_y += ray->step_y;
-			side = 1;
+			ray->side = ray->step_y;
 		}
-		if (cub->level.map[map_y][map_x] == 1)
+		if (cub->level.map[map_y][map_x] == '1')
 			hit = 1;
 	}
 }
 
-void	raycasting(t_cub *cub)
+void	raycast_loop(t_cub *cub)
 {
 	int			i;
 	t_ray		*ray;
@@ -104,4 +103,11 @@ void	raycasting(t_cub *cub)
 		define_ray_side_dist(ray, cub->player.pos_x, cub->player.pos_y);
 		dda(cub, ray, map_x, map_y);
 	}
+}
+
+void	raycasting(t_cub *cub)
+{
+	set_initial_player_pos(cub);
+	set_initial_plane(cub);
+	raycast_loop(cub);
 }

@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 16:29:14 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/18 16:20:13 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/20 11:47:58 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	set_initial_player_pos(t_cub *cub)
 					cub->player.dir_x = -1;
 				else if (cub->level.map[i][j] == 'S')
 					cub->player.dir_y = 1;
+				return ;
 			}
 		}
 	}
