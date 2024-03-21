@@ -30,6 +30,12 @@ SRCS 				+=	$(addprefix $(SRC_DIR)/import/,			\
 SRCS				+=	$(addprefix $(SRC_DIR)/minimap/,		\
 							map_drawing.c						\
 							minimap.c)
+SRCS				+=	$(addprefix $(SRC_DIR)/keys/,			\
+							keys.c)
+SRCS				+=	$(addprefix $(SRC_DIR)/raycasting/,		\
+							initializing.c						\
+							raycasting.c						\
+							rotation.c)
 OBJS	 			=	$(SRCS:%.c=%.o)
 BUILDS				=	$(addprefix $(BUILD_DIR)/, $(OBJS))
 
@@ -110,7 +116,7 @@ $(BUILD_DIR)/%.o: %.c
 clean_cub3d:
 	@ rm -rf $(BUILD_DIR)
 
-clean: clean_MLX clean_libft clean_cub3d
+clean: clean_MLX clean_cub3d
 
 fclean: fclean_MLX fclean_libft fclean_cub3d
 

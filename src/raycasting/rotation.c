@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   rotation.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/06 22:40:49 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/20 11:35:31 by bmoretti         ###   ########.fr       */
+/*   Created: 2024/03/17 21:17:17 by brmoretti         #+#    #+#             */
+/*   Updated: 2024/03/20 13:29:04 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MLX42.h"
-#include "cub3d.h"
-#include "keys.h"
+#include "raycasting.h"
 
-
-int	main(int argc, char *argv[])
+void	rotate(double *x, double *y, double rad)
 {
-	static t_cub	cub;
+	double	x_temp;
+	double	y_temp;
 
-	import(argc, argv, &cub.level);
-#ifdef DEBUG
-	printf("Import success\n");
-#endif
-	raycasting(&cub);
-	cub.mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
-	mlx_key_hook(cub.mlx, ft_keys, &cub);
-	minimap(&cub);
-	mlx_terminate(cub.mlx);
-	return (0);
+	x_temp = *x;
+	y_temp = *y;
+	*x = x_temp * cos(rad) + y_temp * -sin(rad);
+	*y = x_temp * sin(rad) + y_temp * cos(rad);
 }

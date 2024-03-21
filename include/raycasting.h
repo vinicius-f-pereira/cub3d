@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/06 22:40:49 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/20 11:35:31 by bmoretti         ###   ########.fr       */
+/*   Created: 2024/03/17 16:27:32 by brmoretti         #+#    #+#             */
+/*   Updated: 2024/03/20 11:30:19 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MLX42.h"
-#include "cub3d.h"
-#include "keys.h"
+#ifndef RAYCASTING_H
+# define RAYCASTING_H
 
+# include "cub3d.h"
 
-int	main(int argc, char *argv[])
-{
-	static t_cub	cub;
+void	set_initial_player_pos(t_cub *cub);
+void	set_initial_plane(t_cub	*cub);
+void	rotate(double *x, double *y, double rad);
 
-	import(argc, argv, &cub.level);
-#ifdef DEBUG
-	printf("Import success\n");
 #endif
-	raycasting(&cub);
-	cub.mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
-	mlx_key_hook(cub.mlx, ft_keys, &cub);
-	minimap(&cub);
-	mlx_terminate(cub.mlx);
-	return (0);
-}

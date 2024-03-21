@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:09:36 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/17 13:06:22 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/03/21 08:53:17 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	square_constructor(mlx_image_t *img, uint32_t color)
 		while (++j < img->height)
 			mlx_put_pixel(img, i, j, color);
 	}
-
 }
 
 void	square_size_and_border(t_cub *cub)
@@ -38,7 +37,7 @@ void	square_size_and_border(t_cub *cub)
 	int	y;
 
 	x = MINI_WIDTH / cub->level.x_size;
-	y = MINI_HEGHT / cub->level.y_size;
+	y = MINI_HEIGHT / cub->level.y_size;
 	if (x < y)
 		cub->mini.side = x;
 	else

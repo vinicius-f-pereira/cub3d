@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap.h                                          :+:      :+:    :+:   */
+/*   keys.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 14:11:23 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/18 17:22:36 by bmoretti         ###   ########.fr       */
+/*   Created: 2024/03/18 18:16:07 by vde-frei          #+#    #+#             */
+/*   Updated: 2024/03/19 10:29:07 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIMAP_H
-# define MINIMAP_H
+#ifndef KEYS_H
+# define KEYS_H
 
 # include "cub3d.h"
 
-# define MINI_WIDTH 700
-# define MINI_HEIGHT 500
-# define MINI_X 10
-# define MINI_Y 10
-# define BORDER 0.05
+void	ft_end_key(mlx_key_data_t key, t_cub *cub);
+void	ft_move(mlx_key_data_t key, t_cub *cub);
+void	ft_keys(mlx_key_data_t key, void *cub);
 
-void	draw_map(t_cub *cub);
-
-#endif
+#endif // !KEYS_H
