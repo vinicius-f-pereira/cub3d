@@ -31,7 +31,7 @@ SRCS				+=	$(addprefix $(SRC_DIR)/minimap/,		\
 							map_drawing.c						\
 							minimap.c)
 SRCS				+=	$(addprefix $(SRC_DIR)/keys/,			\
-							esc_key.c)
+							keys.c)
 SRCS				+=	$(addprefix $(SRC_DIR)/raycasting/,		\
 							initializing.c						\
 							raycasting.c						\

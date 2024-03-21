@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 21:41:45 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/20 13:51:33 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/21 08:48:16 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	define_ray_dir(t_cub *cub, t_ray *ray)
 {
 	double		cam_x;
 
-	cam_x = 2 * ray->index / (N_RAYS - 1) - 1;
+	cam_x = 2 * ray->index / (N_RAYS - 1.0) - 1.0;
 	ray->dir_x = cub->player.dir_x + cam_x * cub->plane.x;
 	ray->dir_y = cub->player.dir_y + cam_x * cub->plane.y;
 }
