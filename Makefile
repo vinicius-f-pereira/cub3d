@@ -35,8 +35,13 @@ SRCS				+=	$(addprefix $(SRC_DIR)/keys/,			\
 SRCS				+=	$(addprefix $(SRC_DIR)/raycasting/,		\
 							initializing.c						\
 							raycast_loop.c						\
-							raycasting.c						\
-							rotation.c)
+							raycasting.c)
+SRCS				+=	$(addprefix $(SRC_DIR)/render/,			\
+							init_destroy.c						\
+							render.c)
+SRCS				+=	$(addprefix $(SRC_DIR)/utils/,			\
+							colors.c							\
+							rotate.c)
 OBJS	 			=	$(SRCS:%.c=%.o)
 BUILDS				=	$(addprefix $(BUILD_DIR)/, $(OBJS))
 

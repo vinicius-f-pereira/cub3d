@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 21:41:45 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/21 16:25:40 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:32:02 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,3 @@ static void	dda(t_cub *cub, t_ray *ray, int map_x, int map_y)
 		ray->perp_wall_dist = ray->side_dist_y - ray->delta_dist_y;
 }
 
-void	raycasting(t_cub *cub)
-{
-	set_initial_player_pos(cub);
-	set_initial_plane(cub);
-	raycast_loop(cub);
-}

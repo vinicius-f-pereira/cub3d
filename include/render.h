@@ -6,13 +6,13 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 16:29:40 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/21 16:30:23 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:58:05 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RENDER_H
 # define RENDER_H
 
-# include
+# include "cub3d.h"
 
 #endif

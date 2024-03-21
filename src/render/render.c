@@ -6,7 +6,19 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 16:29:07 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/21 16:29:08 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:02:18 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "render.h"
+
+void	render(t_cub *cub)
+{
+	int	i;
+
+	i = -1;
+	while (++i < N_RAYS)
+	{
+		
+	}
+}

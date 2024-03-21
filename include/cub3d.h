@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:38:52 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/21 15:28:43 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:35:19 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,15 @@
 
 typedef struct s_level
 {
-	char			no[MAX_COLS + 1];
-	char			so[MAX_COLS + 1];
-	char			we[MAX_COLS + 1];
-	char			ea[MAX_COLS + 1];
-	unsigned char	f[3];
-	unsigned char	c[3];
-	char			map[MAX_ROWS + 1][MAX_COLS + 1];
-	size_t			x_size;
-	size_t			y_size;
+	char	no[MAX_COLS + 1];
+	char	so[MAX_COLS + 1];
+	char	we[MAX_COLS + 1];
+	char	ea[MAX_COLS + 1];
+	int		f[3];
+	int		c[3];
+	char	map[MAX_ROWS + 1][MAX_COLS + 1];
+	size_t	x_size;
+	size_t	y_size;
 }	t_level;
 
 typedef struct s_minimap
@@ -65,22 +65,6 @@ typedef struct s_minimap
 	int			side;
 	int			border;
 }	t_minimap;
-
-typedef struct s_ray
-{
-	int		index;
-	double	dir_x;
-	double	dir_y;
-	double	side_dist_x;
-	double	side_dist_y;
-	double	delta_dist_x;
-	double	delta_dist_y;
-	int		step_x;
-	int		step_y;
-	int		side;
-	double	perp_wall_dist;
-	int		line_height;
-}	t_ray;
 
 typedef struct s_player
 {
@@ -96,6 +80,14 @@ typedef struct s_plane
 	double	y;
 }	t_plane;
 
+typedef struct s_render
+{
+	int			width;
+	mlx_image_t	*floor;
+	mlx_image_t	*ceiling;
+}	t_render;
+
+
 typedef struct s_cub
 {
 	mlx_t		*mlx;
@@ -103,7 +95,7 @@ typedef struct s_cub
 	t_minimap	mini;
 	t_player	player;
 	t_plane		plane;
-	t_ray		*rays[N_RAYS];
+	t_render	*render;
 }	t_cub;
 
 enum	e_side
@@ -114,11 +106,14 @@ enum	e_side
 	WEST = -1
 };
 
-void	import(int argc, char *argv[], t_level *lvl);
-void	minimap(t_cub *cub);
-void	raycasting(t_cub *cub);
+void		import(int argc, char *argv[], t_level *lvl);
+void		minimap(t_cub *cub);
+
+//UTILS
+uint32_t	color_rgba(int r, int g, int b, int a);
+void		rectangle_fill(mlx_image_t *img, uint32_t color);
 
 //DEBUG
-void	print_cub_import(t_level *lvl);
+void		print_cub_import(t_level *lvl);
 
 #endif
