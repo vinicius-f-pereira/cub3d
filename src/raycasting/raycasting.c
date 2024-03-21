@@ -6,13 +6,13 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 21:41:45 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/21 08:48:16 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:25:40 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycasting.h"
 
-void	define_ray_delta(t_ray *ray)
+static void	define_ray_delta(t_ray *ray)
 {
 	if (ray->dir_x == 0)
 		ray->delta_dist_x = INFINITY;
@@ -24,7 +24,7 @@ void	define_ray_delta(t_ray *ray)
 		ray->delta_dist_y = fabs(1 / ray->dir_y);
 }
 
-void	define_ray_side_dist(t_ray *ray, double pos_x, double pos_y)
+static void	define_ray_side_dist(t_ray *ray, double pos_x, double pos_y)
 {
 	const double	map_x = (double)(int)pos_x;
 	const double	map_y = (double)(int)pos_y;
@@ -51,7 +51,7 @@ void	define_ray_side_dist(t_ray *ray, double pos_x, double pos_y)
 	}
 }
 
-void	define_ray_dir(t_cub *cub, t_ray *ray)
+static void	define_ray_dir(t_cub *cub, t_ray *ray)
 {
 	double		cam_x;
 
@@ -60,49 +60,29 @@ void	define_ray_dir(t_cub *cub, t_ray *ray)
 	ray->dir_y = cub->player.dir_y + cam_x * cub->plane.y;
 }
 
-void	dda(t_cub *cub, t_ray *ray, int map_x, int map_y)
+static void	dda(t_cub *cub, t_ray *ray, int map_x, int map_y)
 {
-	int	hit;
-
-	hit = 0;
-	while (!hit)
+	while (1)
 	{
 		if (ray->side_dist_x < ray->side_dist_y)
 		{
 			ray->side_dist_x += ray->delta_dist_x;
 			map_x += ray->step_x;
-			ray->side = ray->step_x << 1;
+			ray->side = ray->step_x;
 		}
 		else
 		{
 			ray->side_dist_y += ray->delta_dist_y;
 			map_y += ray->step_y;
-			ray->side = ray->step_y;
+			ray->side = ray->step_y * 2;
 		}
 		if (cub->level.map[map_y][map_x] == '1')
-			hit = 1;
+			break ;
 	}
-}
-
-void	raycast_loop(t_cub *cub)
-{
-	int			i;
-	t_ray		*ray;
-	const int	map_x = (int)cub->player.pos_x;
-	const int	map_y = (int)cub->player.pos_y;
-
-	i = -1;
-	while (++i < N_RAYS)
-	{
-		ray = malloc(sizeof(t_ray));
-		if (!ray)
-			exit(EXIT_FAILURE);
-		ray->index = i;
-		define_ray_dir(cub, ray);
-		define_ray_delta(ray);
-		define_ray_side_dist(ray, cub->player.pos_x, cub->player.pos_y);
-		dda(cub, ray, map_x, map_y);
-	}
+	if (ray->side == EAST || ray->side == WEST)
+		ray->perp_wall_dist = ray->side_dist_x - ray->delta_dist_x;
+	else
+		ray->perp_wall_dist = ray->side_dist_y - ray->delta_dist_y;
 }
 
 void	raycasting(t_cub *cub)

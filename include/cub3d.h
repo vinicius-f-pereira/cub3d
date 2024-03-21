@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:38:52 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/20 13:45:07 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:28:43 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 
 # define M_PI 3.14159265358979323846
 # define FOV 1.0
+# define BOX_HEIGHT 100.0
 
 typedef struct s_level
 {
@@ -77,7 +78,8 @@ typedef struct s_ray
 	int		step_x;
 	int		step_y;
 	int		side;
-	double	len;
+	double	perp_wall_dist;
+	int		line_height;
 }	t_ray;
 
 typedef struct s_player
@@ -86,7 +88,6 @@ typedef struct s_player
 	double	pos_y;
 	double	dir_x;
 	double	dir_y;
-	t_ray	*rays[N_RAYS];
 }	t_player;
 
 typedef struct s_plane
@@ -95,7 +96,6 @@ typedef struct s_plane
 	double	y;
 }	t_plane;
 
-
 typedef struct s_cub
 {
 	mlx_t		*mlx;
@@ -103,7 +103,16 @@ typedef struct s_cub
 	t_minimap	mini;
 	t_player	player;
 	t_plane		plane;
+	t_ray		*rays[N_RAYS];
 }	t_cub;
+
+enum	e_side
+{
+	NORTH = 2,
+	SOUTH = -2,
+	EAST = 1,
+	WEST = -1
+};
 
 void	import(int argc, char *argv[], t_level *lvl);
 void	minimap(t_cub *cub);

@@ -34,6 +34,7 @@ SRCS				+=	$(addprefix $(SRC_DIR)/keys/,			\
 							keys.c)
 SRCS				+=	$(addprefix $(SRC_DIR)/raycasting/,		\
 							initializing.c						\
+							raycast_loop.c						\
 							raycasting.c						\
 							rotation.c)
 OBJS	 			=	$(SRCS:%.c=%.o)
