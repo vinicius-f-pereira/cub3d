@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_destroy.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:05:49 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/21 18:25:45 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/22 14:25:24 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,19 +60,21 @@ void	render_destroy(t_cub *cub)
 void	render_init(t_cub *cub)
 {
 	uint32_t	color;
+	uint32_t	heights;
 
 	cub->render = malloc(sizeof(t_render));
-	if (cub->render)
+	if (!cub->render)
 		exit (EXIT_FAILURE);
-	cub->render->width = WIDTH / N_RAYS;
-	cub->render->ceiling = mlx_new_image(cub->mlx, WIDTH, HEIGHT / 2);
+	cub->render->width = WINDOW_WIDTH / N_RAYS;
+	heights = WINDOW_HEIGHT / 2;
+	cub->render->ceiling = mlx_new_image(cub->mlx, WINDOW_WIDTH, heights);
 	color = color_rgba(cub->level.c[0], cub->level.c[1], cub->level.c[2], 255);
 	rectangle_fill(cub->render->ceiling, color);
 	mlx_image_to_window(cub->mlx, cub->render->ceiling, 0, 0);
-	cub->render->floor = mlx_new_image(cub->mlx, WIDTH, HEIGHT / 2);
+	cub->render->floor = mlx_new_image(cub->mlx, WINDOW_WIDTH, heights);
 	color = color_rgba(cub->level.f[0], cub->level.f[1], cub->level.f[2], 255);
 	rectangle_fill(cub->render->floor, color);
-	mlx_image_to_window(cub->mlx, cub->render->floor, 0, HEIGHT / 2);
+	mlx_image_to_window(cub->mlx, cub->render->floor, 0, WINDOW_HEIGHT / 2);
 	set_initial_player_pos(cub);
 	set_initial_plane(cub);
 }

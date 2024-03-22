@@ -33,8 +33,6 @@ SRCS				+=	$(addprefix $(SRC_DIR)/minimap/,		\
 SRCS				+=	$(addprefix $(SRC_DIR)/keys/,			\
 							keys.c)
 SRCS				+=	$(addprefix $(SRC_DIR)/raycasting/,		\
-							initializing.c						\
-							raycast_loop.c						\
 							raycasting.c)
 SRCS				+=	$(addprefix $(SRC_DIR)/render/,			\
 							init_destroy.c						\

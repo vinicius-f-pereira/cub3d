@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:40:49 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/20 11:35:31 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/22 14:27:54 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@ int	main(int argc, char *argv[])
 #ifdef DEBUG
 	printf("Import success\n");
 #endif
-	raycasting(&cub);
-	cub.mlx = mlx_init(WIDTH, HEIGHT, "cub3d", true);
-	mlx_key_hook(cub.mlx, ft_keys, &cub);
-	minimap(&cub);
+	cub.mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "cub3d", true);
+	render_init(&cub);
+	render(&cub);
+	//mlx_key_hook(cub.mlx, ft_keys, &cub);
+	//minimap(&cub);
+	mlx_loop(cub.mlx);
 	mlx_terminate(cub.mlx);
 	return (0);
 }

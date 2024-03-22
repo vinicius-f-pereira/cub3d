@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 21:41:45 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/21 18:32:02 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/22 10:57:34 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycasting.h"
+#include "cub3d.h"
 
 static void	define_ray_delta(t_ray *ray)
 {
@@ -85,3 +85,20 @@ static void	dda(t_cub *cub, t_ray *ray, int map_x, int map_y)
 		ray->perp_wall_dist = ray->side_dist_y - ray->delta_dist_y;
 }
 
+t_ray	*raycasting(t_cub *cub, int ray_index)
+{
+	t_ray		*ray;
+	const int	map_x = (int)cub->player.pos_x;
+	const int	map_y = (int)cub->player.pos_y;
+
+
+	ray = malloc(sizeof(t_ray));
+	if (!ray)
+		return (NULL);
+	ray->index = ray_index;
+	define_ray_dir(cub, ray);
+	define_ray_delta(ray);
+	define_ray_side_dist(ray, cub->player.pos_x, cub->player.pos_y);
+	dda(cub, ray, map_x, map_y);
+	return (ray);
+}

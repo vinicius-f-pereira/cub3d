@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_elements.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:11:59 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/10 18:43:26 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/22 13:23:24 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "import.h"
 
-static void	get_rgb(unsigned char dest[3], const char *str,
-	t_import_elements *lvl_el)
+static void	get_rgb(int dest[3], const char *str, t_import_elements *lvl_el)
 {
 	int		index;
 	int		i;

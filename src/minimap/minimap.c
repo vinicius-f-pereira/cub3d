@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:09:36 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/21 17:27:32 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/22 13:20:29 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,4 @@ void	minimap(t_cub *cub)
 	rectangle_fill(cub->mini.floor, BLACK);
 	rectangle_fill(cub->mini.player, BLUE);
 	draw_map(cub);
-	mlx_loop(cub->mlx);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:38:52 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/21 18:35:19 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/22 14:32:55 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@
 # define MAX_COLS 80
 
 //raycasting
-# define N_RAYS 3
+# define N_RAYS 800
 
 //MLX definitions
-# define WIDTH 800
-# define HEIGHT 600
+# define WINDOW_WIDTH 800
+# define WINDOW_HEIGHT 600
 
 //COLORS
 # define BLACK 0x000000ff
@@ -42,7 +42,7 @@
 
 # define M_PI 3.14159265358979323846
 # define FOV 1.0
-# define BOX_HEIGHT 100.0
+# define BOX_HEIGHT 150.0
 
 typedef struct s_level
 {
@@ -85,8 +85,23 @@ typedef struct s_render
 	int			width;
 	mlx_image_t	*floor;
 	mlx_image_t	*ceiling;
+	mlx_image_t	*boxes[N_RAYS];
 }	t_render;
 
+typedef struct s_ray
+{
+	int		index;
+	double	dir_x;
+	double	dir_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	int		step_x;
+	int		step_y;
+	double	perp_wall_dist;
+	int		side;
+}	t_ray;
 
 typedef struct s_cub
 {
@@ -108,10 +123,14 @@ enum	e_side
 
 void		import(int argc, char *argv[], t_level *lvl);
 void		minimap(t_cub *cub);
+t_ray		*raycasting(t_cub *cub, int ray_index);
+void		render_init(t_cub *cub);
+void		render(t_cub *cub);
 
 //UTILS
 uint32_t	color_rgba(int r, int g, int b, int a);
 void		rectangle_fill(mlx_image_t *img, uint32_t color);
+void 		rotate(double *x, double *y, double rad);
 
 //DEBUG
 void		print_cub_import(t_level *lvl);
