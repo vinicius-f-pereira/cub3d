@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:38:52 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/22 14:32:55 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/22 17:21:47 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,23 @@
 # include "libft.h"
 # include "MLX42.h"
 
-//.cub files definitions
+//CONSTANTS
+# define M_PI 3.14159265358979323846
+
+//.CUB FILES DEFINITIONS
 # define MAX_ROWS 100
 # define MAX_COLS 80
 
-//raycasting
+//RAYCASTING
 # define N_RAYS 800
 
-//MLX definitions
+//MLX WINDOW PROPERTIES
 # define WINDOW_WIDTH 800
 # define WINDOW_HEIGHT 600
+
+//MOVEMENTS
+# define ANGULAR_SPEED 0.05
+# define LINEAR_SPEED 0.1
 
 //COLORS
 # define BLACK 0x000000ff
@@ -40,7 +47,6 @@
 # define GREEN 0x00ff00ff
 # define BLUE 0x0000ffff
 
-# define M_PI 3.14159265358979323846
 # define FOV 1.0
 # define BOX_HEIGHT 150.0
 
@@ -113,6 +119,12 @@ typedef struct s_cub
 	t_render	*render;
 }	t_cub;
 
+enum	e_direction
+{
+	CLOCKWISE = 1,
+	COUNTERCLOCKWISE = -1
+};
+
 enum	e_side
 {
 	NORTH = 2,
@@ -126,6 +138,9 @@ void		minimap(t_cub *cub);
 t_ray		*raycasting(t_cub *cub, int ray_index);
 void		render_init(t_cub *cub);
 void		render(t_cub *cub);
+
+//HOOK_FUNCTIONS
+void		ft_key_hook(mlx_key_data_t keydata, void* param);
 
 //UTILS
 uint32_t	color_rgba(int r, int g, int b, int a);

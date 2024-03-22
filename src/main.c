@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:40:49 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/22 14:27:54 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/22 16:15:44 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char *argv[])
 	cub.mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "cub3d", true);
 	render_init(&cub);
 	render(&cub);
-	//mlx_key_hook(cub.mlx, ft_keys, &cub);
+	mlx_key_hook(cub.mlx, ft_key_hook, &cub);
 	//minimap(&cub);
 	mlx_loop(cub.mlx);
 	mlx_terminate(cub.mlx);

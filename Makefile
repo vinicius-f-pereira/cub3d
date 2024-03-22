@@ -18,6 +18,8 @@ BUILD_DIR			=	build
 #≻───░file's paths
 SRCS				=	$(addprefix $(SRC_DIR)/,				\
 							main.c)
+SRCS				+=	$(addprefix $(SRC_DIR)/controls/,		\
+							movements.c)
 SRCS				+=	$(addprefix $(SRC_DIR)/debug_tools/,	\
 							print_cub_import.c)
 SRCS 				+=	$(addprefix $(SRC_DIR)/import/,			\
