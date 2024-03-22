@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:29:08 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/12 17:17:36 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/22 13:25:23 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	get_elements_error(t_import_elements *lvl_el,
 			const char *error_msg, const int error_code);
 
 void	get_elements(t_import_elements *lvl_el);
-int		fill_valid_rgb_number(const char *str, unsigned char *dest);
+int		fill_valid_rgb_number(const char *str, int *dest);
 
 void	get_map(t_import_elements *lvl_el);
 void	map_validation(t_level *lvl);
