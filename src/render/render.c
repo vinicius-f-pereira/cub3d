@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 16:29:07 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/22 16:10:25 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/23 11:32:22 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void	render(t_cub *cub)
 		if (!ray)
 			exit (EXIT_FAILURE); //panic
 		height = (int)(BOX_HEIGHT / ray->perp_wall_dist);
+		if (height > WINDOW_HEIGHT)
+			height = WINDOW_HEIGHT;
 		render_box(cub, ray, height);
 		free (ray);
 	}
