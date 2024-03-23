@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 16:29:07 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/22 13:27:17 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/23 11:32:22 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,18 @@ void	mock_define_color(uint32_t *color, t_ray *ray)
 		*color = BLUE;
 }
 
+void	destroy_box(t_cub *cub, int index)
+{
+	mlx_image_t	**img;
+
+	img = &cub->render->boxes[index];
+	if (*img)
+	{
+		mlx_delete_image(cub->mlx, *img);
+		*img = NULL;
+	}
+}
+
 void	render_box(t_cub *cub, t_ray *ray, int box_height)
 {
 	uint32_t	color;
@@ -33,6 +45,7 @@ void	render_box(t_cub *cub, t_ray *ray, int box_height)
 
 	mock_define_color(&color, ray);
 	img = &cub->render->boxes[ray->index];
+	destroy_box(cub, ray->index);
 	*img = mlx_new_image(cub->mlx, cub->render->width, box_height);
 	rectangle_fill(*img, color);
 	x = ray->index * cub->render->width;
@@ -53,6 +66,8 @@ void	render(t_cub *cub)
 		if (!ray)
 			exit (EXIT_FAILURE); //panic
 		height = (int)(BOX_HEIGHT / ray->perp_wall_dist);
+		if (height > WINDOW_HEIGHT)
+			height = WINDOW_HEIGHT;
 		render_box(cub, ray, height);
 		free (ray);
 	}
