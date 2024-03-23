@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:38:52 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/22 17:21:47 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/22 22:04:22 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 
 //MOVEMENTS
 # define ANGULAR_SPEED 0.05
-# define LINEAR_SPEED 0.1
+# define LINEAR_SPEED 0.05
 
 //COLORS
 # define BLACK 0x000000ff
@@ -47,7 +47,7 @@
 # define GREEN 0x00ff00ff
 # define BLUE 0x0000ffff
 
-# define FOV 1.0
+# define FOV 0.66
 # define BOX_HEIGHT 150.0
 
 typedef struct s_level
