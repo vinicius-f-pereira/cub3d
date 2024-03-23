@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:19:46 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/23 00:28:36 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/23 00:36:27 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,24 @@
 static void	valid_new_pos(t_cub *cub, double dir_x, double dir_y)
 {
 	double	delta[2];
+	int		map_pos[2];
 	double	new_pos[2];
 
 	delta[0] = LINEAR_SPEED * dir_x;
 	delta[1] = LINEAR_SPEED * dir_y;
+	map_pos[0] = (int)cub->player.pos_x;
+	map_pos[1] = (int)cub->player.pos_y;
 	new_pos[0] = cub->player.pos_x + delta[0] + dir_x * 0.10;
-	new_pos[1] = cub->player.pos_y + delta[1] + dir_y * 0.10;
-	if (cub->level.map[(int)new_pos[1]][(int)new_pos[0]] == '0')
-	{
+	if (cub->level.map[map_pos[1]][(int)new_pos[0]] == '0')
 		cub->player.pos_x = cub->player.pos_x + delta[0];
+	new_pos[1] = cub->player.pos_y + delta[1] + dir_y * 0.10;
+	if (cub->level.map[(int)new_pos[1]][map_pos[0]] == '0')
 		cub->player.pos_y = cub->player.pos_y + delta[1];
-	} 
+	// if (cub->level.map[(int)new_pos[1]][(int)new_pos[0]] == '0')
+	// {
+	// 	cub->player.pos_x = cub->player.pos_x + delta[0];
+	// 	cub->player.pos_y = cub->player.pos_y + delta[1];
+	// } 
 }
 
 static void	wasd(t_cub *cub, keys_t key)

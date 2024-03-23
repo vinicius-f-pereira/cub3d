@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:38:52 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/22 22:04:22 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/23 00:37:40 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define MAX_COLS 80
 
 //RAYCASTING
-# define N_RAYS 800
+# define N_RAYS 400
 
 //MLX WINDOW PROPERTIES
 # define WINDOW_WIDTH 800
