@@ -18,6 +18,8 @@ BUILD_DIR			=	build
 #≻───░file's paths
 SRCS				=	$(addprefix $(SRC_DIR)/,				\
 							main.c)
+SRCS				+=	$(addprefix $(SRC_DIR)/controls/,		\
+							movements.c)
 SRCS				+=	$(addprefix $(SRC_DIR)/debug_tools/,	\
 							print_cub_import.c)
 SRCS 				+=	$(addprefix $(SRC_DIR)/import/,			\
@@ -33,9 +35,13 @@ SRCS				+=	$(addprefix $(SRC_DIR)/minimap/,		\
 SRCS				+=	$(addprefix $(SRC_DIR)/keys/,			\
 							keys.c)
 SRCS				+=	$(addprefix $(SRC_DIR)/raycasting/,		\
-							initializing.c						\
-							raycasting.c						\
-							rotation.c)
+							raycasting.c)
+SRCS				+=	$(addprefix $(SRC_DIR)/render/,			\
+							init_destroy.c						\
+							render.c)
+SRCS				+=	$(addprefix $(SRC_DIR)/utils/,			\
+							colors.c							\
+							rotate.c)
 OBJS	 			=	$(SRCS:%.c=%.o)
 BUILDS				=	$(addprefix $(BUILD_DIR)/, $(OBJS))
 

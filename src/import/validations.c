@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validations.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:43:12 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/10 16:00:41 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/22 13:24:34 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	basic_validation(int argc, char *argv[])
 	return (fd);
 }
 
-int	fill_valid_rgb_number(const char *str, unsigned char *dest)
+int	fill_valid_rgb_number(const char *str, int *dest)
 {
 	size_t	i;
 	size_t	zeros;

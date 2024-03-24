@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotation.c                                         :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/17 21:17:17 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/20 13:29:04 by bmoretti         ###   ########.fr       */
+/*   Created: 2024/03/21 18:26:21 by bmoretti          #+#    #+#             */
+/*   Updated: 2024/03/21 18:28:19 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycasting.h"
+#include "cub3d.h"
 
-void	rotate(double *x, double *y, double rad)
+/**
+ * Rotates the given coordinates of a vector (x, y) by the specified angle in
+ * radians.
+ *
+ * @param x - Pointer to the x-coordinate.
+ * @param y - Pointer to the y-coordinate.
+ * @param rad - The angle in radians.
+ */
+void rotate(double *x, double *y, double rad)
 {
-	double	x_temp;
-	double	y_temp;
+	double x_temp;
+	double y_temp;
 
 	x_temp = *x;
 	y_temp = *y;
