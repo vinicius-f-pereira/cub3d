@@ -6,11 +6,13 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:19:46 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/23 00:36:27 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/24 20:43:50 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "MLX42.h"
 #include "cub3d.h"
+#include "keys.h"
 
 static void	valid_new_pos(t_cub *cub, double dir_x, double dir_y)
 {
@@ -32,7 +34,7 @@ static void	valid_new_pos(t_cub *cub, double dir_x, double dir_y)
 	// {
 	// 	cub->player.pos_x = cub->player.pos_x + delta[0];
 	// 	cub->player.pos_y = cub->player.pos_y + delta[1];
-	// } 
+	// }
 }
 
 static void	wasd(t_cub *cub, keys_t key)
@@ -42,6 +44,14 @@ static void	wasd(t_cub *cub, keys_t key)
 
 	dir_x = cub->player.dir_x;
 	dir_y = cub->player.dir_y;
+	if (mlx_is_key_down(cub->mlx, MLX_KEY_A) && mlx_is_key_down(cub->mlx, MLX_KEY_S))
+		;//figure out how to implemente this both rotation
+	else if (mlx_is_key_down(cub->mlx, MLX_KEY_S) && mlx_is_key_down(cub->mlx, MLX_KEY_D))
+		;//figure out how to implemente this both rotation
+	else if (mlx_is_key_down(cub->mlx, MLX_KEY_W) && mlx_is_key_down(cub->mlx, MLX_KEY_D))
+		;//figure out how to implemente this both rotation
+	else if (mlx_is_key_down(cub->mlx, MLX_KEY_W) && mlx_is_key_down(cub->mlx, MLX_KEY_A))
+		;//figure out how to implemente this both rotation
 	if (key == MLX_KEY_A || key == MLX_KEY_D)
 		rotate(&dir_x, &dir_y, M_PI / 2);
 	if (key == MLX_KEY_S || key == MLX_KEY_A)
@@ -50,6 +60,7 @@ static void	wasd(t_cub *cub, keys_t key)
 		dir_y *= -1;
 	}
 	valid_new_pos(cub, dir_x, dir_y);
+	render(cub);
 }
 
 static void	player_plane_rotation(t_cub *cub, int direction)
@@ -59,21 +70,20 @@ static void	player_plane_rotation(t_cub *cub, int direction)
 	speed = (double)direction * ANGULAR_SPEED;
 	rotate(&cub->player.dir_x, &cub->player.dir_y, speed);
 	rotate(&cub->plane.x, &cub->plane.y, speed);
+	render(cub);
 }
 
-void	ft_key_hook(mlx_key_data_t keydata, void* param)
+void	ft_key_hook(mlx_key_data_t key, void *param)
 {
 	t_cub	*cub;
-	keys_t	key;
 
 	cub = (t_cub *)param;
-	key = keydata.key;
-	if (key == MLX_KEY_LEFT)
+	ft_end_key(key, cub);
+	if (key.key == MLX_KEY_LEFT)
 		player_plane_rotation(cub, COUNTERCLOCKWISE);
-	else if (key == MLX_KEY_RIGHT)
+	else if (key.key == MLX_KEY_RIGHT)
 		player_plane_rotation(cub, CLOCKWISE);
-	if (key == MLX_KEY_W || key == MLX_KEY_A || key == MLX_KEY_S
-		|| key == MLX_KEY_D)
-		wasd(cub, key);
-	render(cub);
+	if (key.key == MLX_KEY_W || key.key == MLX_KEY_A || key.key == MLX_KEY_S
+		|| key.key == MLX_KEY_D)
+		wasd(cub, key.key);
 }
