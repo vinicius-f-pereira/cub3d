@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:09:36 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/25 13:40:40 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:32:04 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	minimap(t_cub *cub)
 	rectangle_fill(cub->mini.floor, FLOOR_COLOR);
 	if (cub->mini.player)
 		mlx_delete_image(cub->mlx, cub->mini.player);
-	cub->mini.player = mlx_new_image(cub->mlx, side / 3, side / 3);
+	cub->mini.player = mlx_new_image(cub->mlx, side / 2, side / 2);
 	rectangle_fill(cub->mini.player, PLAYER_COLOR);
 	draw_map(cub);
 }

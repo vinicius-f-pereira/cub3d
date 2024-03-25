@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:19:46 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/25 10:27:08 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:30:59 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MLX42.h"
 #include "cub3d.h"
 #include "keys.h"
+
+void	mouse_follow(t_cub *cub);
 
 static void	valid_new_pos(t_cub *cub, double dir_x, double dir_y)
 {
@@ -37,6 +39,7 @@ static void	wasd(t_cub *cub, keys_t key)
 	double	dir_x;
 	double	dir_y;
 
+	mouse_follow(cub);
 	dir_x = cub->player.dir_x;
 	dir_y = cub->player.dir_y;
 	if (mlx_is_key_down(cub->mlx, MLX_KEY_A) && mlx_is_key_down(cub->mlx, MLX_KEY_S))
@@ -58,7 +61,7 @@ static void	wasd(t_cub *cub, keys_t key)
 	render(cub);
 }
 
-static void	player_plane_rotation(t_cub *cub, int direction)
+void	player_plane_rotation(t_cub *cub, int direction)
 {
 	double	speed;
 
@@ -81,4 +84,21 @@ void	ft_key_hook(mlx_key_data_t key, void *param)
 	if (key.key == MLX_KEY_W || key.key == MLX_KEY_A || key.key == MLX_KEY_S
 		|| key.key == MLX_KEY_D)
 		wasd(cub, key.key);
+}
+
+void	mouse_follow(t_cub *cub)
+{
+ 	int32_t			pos[2];
+	double			rotation;
+	double			signal;
+
+	mlx_get_mouse_pos(cub->mlx, &pos[0], &pos[1]);
+	rotation = ((double)pos[0] - WINDOW_WIDTH / 2) / (WINDOW_WIDTH / 2);
+	if (rotation < 0)
+		signal = -1.0;
+	else
+		signal = 1.0;
+	rotation *= rotation * signal / 10;
+	rotate(&cub->player.dir_x, &cub->player.dir_y, rotation);
+	rotate(&cub->plane.x, &cub->plane.y, rotation);
 }

@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 20:06:13 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/25 13:40:57 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:32:10 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	draw_player(t_cub *cub)
 	int			y;
 	const int	map_x = (int)cub->player.pos_x;
 	const int	map_y = (int)cub->player.pos_y;
-	const int	half_player = cub->mini.side / 6;
+	const int	half_player = cub->mini.side / 4;
 
 	x = map_x * (cub->mini.border + cub->mini.side) + MINI_X;
 	x += (int)((cub->player.pos_x - (double)map_x) * (double)cub->mini.side);

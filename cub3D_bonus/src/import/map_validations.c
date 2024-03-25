@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validations.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:48:25 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/13 11:14:32 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/25 19:46:32 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
