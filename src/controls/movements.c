@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:19:46 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/24 20:43:50 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/03/25 10:27:08 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,6 @@ static void	valid_new_pos(t_cub *cub, double dir_x, double dir_y)
 	new_pos[1] = cub->player.pos_y + delta[1] + dir_y * 0.10;
 	if (cub->level.map[(int)new_pos[1]][map_pos[0]] == '0')
 		cub->player.pos_y = cub->player.pos_y + delta[1];
-	// if (cub->level.map[(int)new_pos[1]][(int)new_pos[0]] == '0')
-	// {
-	// 	cub->player.pos_x = cub->player.pos_x + delta[0];
-	// 	cub->player.pos_y = cub->player.pos_y + delta[1];
-	// }
 }
 
 static void	wasd(t_cub *cub, keys_t key)
