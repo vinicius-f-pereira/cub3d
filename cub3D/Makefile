@@ -1,5 +1,5 @@
 #≻───░⋆ ✪ DEFAULTS ✪ ⋆░──────────────────────────────────────────────────────≺#
-NAME				=	cub3d
+NAME				=	cub3D
 CC					=	cc
 CC_FLAGS			=	-Wall		\
 						-Wextra		\
@@ -11,8 +11,7 @@ CC_FLAGS			=	-Wall		\
 SRC_DIR				=	src
 INCLUDE_DIR			=	include
 INCLUDE_FILES		=	cub3d.h		\
-						import.h	\
-						minimap.h
+						import.h	
 INCLUDES			=	$(addprefix $(INCLUDE_DIR)/, $(INCLUDE_FILES))
 BUILD_DIR			=	build
 #≻───░file's paths
@@ -29,9 +28,6 @@ SRCS 				+=	$(addprefix $(SRC_DIR)/import/,			\
 							import.c							\
 							map_validations.c					\
 							validations.c)
-SRCS				+=	$(addprefix $(SRC_DIR)/minimap/,		\
-							map_drawing.c						\
-							minimap.c)
 SRCS				+=	$(addprefix $(SRC_DIR)/keys/,			\
 							keys.c)
 SRCS				+=	$(addprefix $(SRC_DIR)/raycasting/,		\
