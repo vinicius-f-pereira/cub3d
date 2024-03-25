@@ -6,14 +6,12 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:40:49 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/22 16:15:44 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/24 20:44:16 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MLX42.h"
 #include "cub3d.h"
-#include "keys.h"
-
 
 int	main(int argc, char *argv[])
 {
