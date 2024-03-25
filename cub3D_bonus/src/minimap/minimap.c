@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:09:36 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/22 13:20:29 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/25 13:40:40 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,17 @@ void	minimap(t_cub *cub)
 
 	square_size_and_border(cub);
 	side = cub->mini.side;
+	if (cub->mini.wall)
+		mlx_delete_image(cub->mlx, cub->mini.wall);
 	cub->mini.wall = mlx_new_image(cub->mlx, side, side);
+	rectangle_fill(cub->mini.wall, WALL_COLOR);
+	if (cub->mini.floor)
+		mlx_delete_image(cub->mlx, cub->mini.floor);
 	cub->mini.floor = mlx_new_image(cub->mlx, side, side);
-	cub->mini.player = mlx_new_image(cub->mlx, side / 4, side / 4);
-	rectangle_fill(cub->mini.wall, WHITE);
-	rectangle_fill(cub->mini.floor, BLACK);
-	rectangle_fill(cub->mini.player, BLUE);
+	rectangle_fill(cub->mini.floor, FLOOR_COLOR);
+	if (cub->mini.player)
+		mlx_delete_image(cub->mlx, cub->mini.player);
+	cub->mini.player = mlx_new_image(cub->mlx, side / 3, side / 3);
+	rectangle_fill(cub->mini.player, PLAYER_COLOR);
 	draw_map(cub);
 }

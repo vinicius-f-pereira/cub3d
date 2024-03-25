@@ -1,5 +1,5 @@
 #≻───░⋆ ✪ DEFAULTS ✪ ⋆░──────────────────────────────────────────────────────≺#
-NAME				=	cub3D
+NAME				=	cub3D_bonus
 CC					=	cc
 CC_FLAGS			=	-Wall		\
 						-Wextra		\

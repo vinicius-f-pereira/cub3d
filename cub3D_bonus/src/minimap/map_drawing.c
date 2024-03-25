@@ -3,14 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   map_drawing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 20:06:13 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/18 19:12:40 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/03/25 13:40:57 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minimap.h"
+
+void	draw_player(t_cub *cub)
+{
+	int			x;
+	int			y;
+	const int	map_x = (int)cub->player.pos_x;
+	const int	map_y = (int)cub->player.pos_y;
+	const int	half_player = cub->mini.side / 6;
+
+	x = map_x * (cub->mini.border + cub->mini.side) + MINI_X;
+	x += (int)((cub->player.pos_x - (double)map_x) * (double)cub->mini.side);
+	x -= half_player;
+	y = map_y * (cub->mini.border + cub->mini.side) + MINI_Y;
+	y += (int)((cub->player.pos_y - (double)map_y) * (double)cub->mini.side);
+	y -= half_player;
+	mlx_image_to_window(cub->mlx, cub->mini.player, x, y);
+}
 
 void	draw_map(t_cub *cub)
 {
@@ -35,11 +52,7 @@ void	draw_map(t_cub *cub)
 				&& mlx_image_to_window(cub->mlx,
 					cub->mini.floor, pos[0], pos[1]) < 0)
 				exit (42);
-			if (ft_strchr("NSEW", c)
-				&& mlx_image_to_window(cub->mlx, cub->mini.player,
-					pos[0] + 3 * cub->mini.side / 8,
-					pos[1] + 3 * cub->mini.side / 8) < 0)
-				exit (42);
+			draw_player(cub);
 		}
 	}
 }

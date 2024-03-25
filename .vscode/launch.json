@@ -8,7 +8,7 @@
 			"name": "(gdb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/cub3d",
+			"program": "${workspaceFolder}/cub3D_bonus/cub3D_bonus",
 			"args": ["maps/simple_map.cub"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
