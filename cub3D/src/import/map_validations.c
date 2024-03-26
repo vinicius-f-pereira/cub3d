@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validations.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:48:25 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/25 19:31:33 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/26 20:28:43 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,20 @@
 
 static void	check_wall(t_level *lvl, int start[2], int i_step, int j_step)
 {
-	start[0] += i_step;
-	start[1] += j_step;
-	while (start[0] > -1 && start[1] > -1 && lvl->map[start[0]][start[1]]
-		&& lvl->map[start[0]][start[1]] != ' ')
+	int	i;
+	int	j;
+
+	i = start[0] + i_step;
+	j = start[1] + j_step;
+	while (i > -1 && j > -1 && lvl->map[i][j]
+		&& lvl->map[i][j] != ' ')
 	{
-		if (lvl->map[start[0]][start[1]] == '1')
+		if (lvl->map[i][j] == '1')
 			return ;
-		if (lvl->map[start[0]][start[1]] == ' ')
+		if (lvl->map[i][j] == ' ')
 			break ;
-		start[0] += i_step;
-		start[1] += j_step;
+		i += i_step;
+		j += j_step;
 	}
 	exit_error_message("🎵 We don't need no education...\n"
 		"🧱 Missing another brick in the wall", 33);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:19:46 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/25 17:30:59 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/26 20:12:18 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,6 @@ static void	wasd(t_cub *cub, keys_t key)
 	mouse_follow(cub);
 	dir_x = cub->player.dir_x;
 	dir_y = cub->player.dir_y;
-	if (mlx_is_key_down(cub->mlx, MLX_KEY_A) && mlx_is_key_down(cub->mlx, MLX_KEY_S))
-		;//figure out how to implemente this both rotation
-	else if (mlx_is_key_down(cub->mlx, MLX_KEY_S) && mlx_is_key_down(cub->mlx, MLX_KEY_D))
-		;//figure out how to implemente this both rotation
-	else if (mlx_is_key_down(cub->mlx, MLX_KEY_W) && mlx_is_key_down(cub->mlx, MLX_KEY_D))
-		;//figure out how to implemente this both rotation
-	else if (mlx_is_key_down(cub->mlx, MLX_KEY_W) && mlx_is_key_down(cub->mlx, MLX_KEY_A))
-		;//figure out how to implemente this both rotation
 	if (key == MLX_KEY_A || key == MLX_KEY_D)
 		rotate(&dir_x, &dir_y, M_PI / 2);
 	if (key == MLX_KEY_S || key == MLX_KEY_A)
