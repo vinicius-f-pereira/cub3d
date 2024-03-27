@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:19:46 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/25 10:27:08 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:21:33 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,6 @@ static void	wasd(t_cub *cub, keys_t key)
 
 	dir_x = cub->player.dir_x;
 	dir_y = cub->player.dir_y;
-	if (mlx_is_key_down(cub->mlx, MLX_KEY_A) && mlx_is_key_down(cub->mlx, MLX_KEY_S))
-		;//figure out how to implemente this both rotation
-	else if (mlx_is_key_down(cub->mlx, MLX_KEY_S) && mlx_is_key_down(cub->mlx, MLX_KEY_D))
-		;//figure out how to implemente this both rotation
-	else if (mlx_is_key_down(cub->mlx, MLX_KEY_W) && mlx_is_key_down(cub->mlx, MLX_KEY_D))
-		;//figure out how to implemente this both rotation
-	else if (mlx_is_key_down(cub->mlx, MLX_KEY_W) && mlx_is_key_down(cub->mlx, MLX_KEY_A))
-		;//figure out how to implemente this both rotation
 	if (key == MLX_KEY_A || key == MLX_KEY_D)
 		rotate(&dir_x, &dir_y, M_PI / 2);
 	if (key == MLX_KEY_S || key == MLX_KEY_A)
