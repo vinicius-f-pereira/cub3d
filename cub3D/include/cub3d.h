@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:38:52 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/25 10:23:11 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:31:53 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,10 @@ typedef struct s_render
 	mlx_image_t	*floor;
 	mlx_image_t	*ceiling;
 	mlx_image_t	*boxes[N_RAYS];
+	mlx_image_t	*NO;
+	mlx_image_t	*SO;
+	mlx_image_t	*EA;
+	mlx_image_t	*WE;
 }	t_render;
 
 typedef struct s_ray
