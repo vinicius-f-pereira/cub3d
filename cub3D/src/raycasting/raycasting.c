@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 21:41:45 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/28 11:05:04 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/28 14:19:33 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ t_ray	*raycasting(t_cub *cub, int ray_index)
 	const int	map_y = (int)cub->player.pos_y;
 
 
-	ray = malloc(sizeof(t_ray));
+	ray = ft_calloc(1, sizeof(t_ray));
 	if (!ray)
 		return (NULL);
 	ray->index = ray_index;

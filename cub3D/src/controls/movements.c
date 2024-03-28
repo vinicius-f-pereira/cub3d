@@ -6,13 +6,20 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:19:46 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/27 17:21:33 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/28 14:14:31 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MLX42.h"
 #include "cub3d.h"
-#include "keys.h"
+
+static void	ft_end_key(mlx_key_data_t key, t_cub *cub)
+{
+	if (key.key == MLX_KEY_ESCAPE)
+	{
+		mlx_close_window(cub->mlx);
+		return;
+	}
+}
 
 static void	valid_new_pos(t_cub *cub, double dir_x, double dir_y)
 {

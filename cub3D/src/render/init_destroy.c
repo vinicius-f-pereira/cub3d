@@ -6,11 +6,11 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:05:49 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/28 12:04:28 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/28 14:28:29 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render.h"
+#include "cub3d.h"
 
 void	set_initial_player_pos(t_cub *cub)
 {
@@ -74,7 +74,7 @@ void	render_init(t_cub *cub)
 	uint32_t	color;
 	uint32_t	heights;
 
-	cub->render = malloc(sizeof(t_render));
+	cub->render = ft_calloc(1, sizeof(t_render));
 	if (!cub->render)
 		exit (EXIT_FAILURE); //panic
 	textures_init(cub);

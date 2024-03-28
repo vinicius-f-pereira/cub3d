@@ -1,0 +1,36 @@
+{
+    ignore_libreadline_leaks
+    Memcheck:Leak
+    ...
+    obj:*/nouveau_dri.*
+}
+{
+    ignore_libreadline_leaks
+    Memcheck:Leak
+    ...
+    obj:*/libglfw.so*
+}
+{
+    ignore_libreadline_leaks
+    Memcheck:Leak
+    ...
+    obj:*/libX11.so.*
+}
+{
+    ignore_libreadline_leaks
+    Memcheck:Leak
+    ...
+    obj:*/libLLVM-15.so.*
+}
+{
+    ignore_libreadline_leaks
+    Memcheck:Leak
+    ...
+    obj:*/libGLX_mesa.so.*
+}
+{
+    ignore_libreadline_leaks
+    Memcheck:Leak
+    ...
+    obj:*/libglfw.*
+}

@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 17:27:36 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/28 12:06:24 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/28 14:07:46 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	texture_x(t_cub *cub, t_ray *ray)
 		wall_x = cub->player.pos_x + ray->perp_wall_dist * ray->dir_x;
 		tex_width = (double)cub->render->no->width;
 	}
-	else if (ray->side == SOUTH)
+	else
 	{
 		wall_x = cub->player.pos_x + ray->perp_wall_dist * ray->dir_x;
 		tex_width = (double)cub->render->so->width;

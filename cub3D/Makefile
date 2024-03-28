@@ -28,8 +28,6 @@ SRCS 				+=	$(addprefix $(SRC_DIR)/import/,			\
 							import.c							\
 							map_validations.c					\
 							validations.c)
-SRCS				+=	$(addprefix $(SRC_DIR)/keys/,			\
-							keys.c)
 SRCS				+=	$(addprefix $(SRC_DIR)/raycasting/,		\
 							raycasting.c						\
 							textures.c)

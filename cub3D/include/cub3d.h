@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:38:52 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/28 11:09:41 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/28 14:26:55 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ void		import(int argc, char *argv[], t_level *lvl);
 void		minimap(t_cub *cub);
 t_ray		*raycasting(t_cub *cub, int ray_index);
 void		render_init(t_cub *cub);
+void		render_destroy(t_cub *cub);
 void		render(t_cub *cub);
 void		textures_to_images(t_cub *cub);
 
