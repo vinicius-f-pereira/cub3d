@@ -3,10 +3,14 @@
 		{
 			"name": "Linux",
 			"includePath": [
-				"${workspaceFolder}/**",
-				"${workspaceFolder}/include",
-				"${workspaceFolder}/libft/include",
-				"${workspaceFolder}/MLX42/include/MLX42"
+				"${workspaceFolder}/cub3D/**",
+				"${workspaceFolder}/cub3D/include",
+				"${workspaceFolder}/cub3D/libft/include",
+				"${workspaceFolder}/cub3D/MLX42/include/MLX42",
+				"${workspaceFolder}/cub3D_bonus/**",
+				"${workspaceFolder}/cub3D_bonus/include",
+				"${workspaceFolder}/cub3D_bonus/libft/include",
+				"${workspaceFolder}/cub3D_bonus/MLX42/include/MLX42"
 			],
 			"defines": [],
 			"compilerPath": "/usr/bin/gcc",
