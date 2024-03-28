@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:05:49 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/28 11:14:01 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/28 12:04:28 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ void	render_init(t_cub *cub)
 
 	cub->render = malloc(sizeof(t_render));
 	if (!cub->render)
-		exit (EXIT_FAILURE);
+		exit (EXIT_FAILURE); //panic
+	textures_init(cub);
 	cub->render->width = WINDOW_WIDTH / N_RAYS;
 	heights = WINDOW_HEIGHT / 2;
 	cub->render->ceiling = mlx_new_image(cub->mlx, WINDOW_WIDTH, heights);
@@ -89,5 +90,4 @@ void	render_init(t_cub *cub)
 	mlx_image_to_window(cub->mlx, cub->render->floor, 0, WINDOW_HEIGHT / 2);
 	set_initial_player_pos(cub);
 	set_initial_plane(cub);
-	textures_init(cub);
 }

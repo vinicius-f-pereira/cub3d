@@ -6,25 +6,11 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 17:27:36 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/28 11:23:01 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/28 12:06:24 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	textures_to_images(t_cub *cub)
-{
-	mlx_texture_t	*tex;
-	mlx_image_t		*img;
-	int				width = 32;
-
-	tex = mlx_load_png(cub->level.no);
-	printf("h: %d w: %d\n", tex->height, tex->width);
-	img = mlx_new_image(cub->mlx, width, tex->height);
-	texture_fill(img, tex, 31);
-	mlx_image_to_window(cub->mlx, img, 0, 0);
-	mlx_resize_image(img, width * 5, 64 * 5);
-}
 
 void	texture_x(t_cub *cub, t_ray *ray)
 {
@@ -52,5 +38,5 @@ void	texture_x(t_cub *cub, t_ray *ray)
 		tex_width = (double)cub->render->so->width;
 	}
 	wall_x -= floor(wall_x);
-	ray->tex_x = (int)(wall_x * tex_width);
+	ray->tex_x = (int)(wall_x * (tex_width - 1));
 }
