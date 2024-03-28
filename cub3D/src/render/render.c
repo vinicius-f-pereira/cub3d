@@ -6,23 +6,23 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 16:29:07 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/23 11:32:22 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/28 11:40:28 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-void	mock_define_color(uint32_t *color, t_ray *ray)
-{
-	if (ray->side == -1)
-		*color = WHITE;
-	else if (ray->side == 1)
-		*color = RED;
-	else if (ray->side == 2)
-		*color = GREEN;
-	else
-		*color = BLUE;
-}
+// void	mock_define_color(uint32_t *color, t_ray *ray)
+// {
+// 	if (ray->side == -1)
+// 		*color = WHITE;
+// 	else if (ray->side == 1)
+// 		*color = RED;
+// 	else if (ray->side == 2)
+// 		*color = GREEN;
+// 	else
+// 		*color = BLUE;
+// }
 
 void	destroy_box(t_cub *cub, int index)
 {
@@ -36,20 +36,45 @@ void	destroy_box(t_cub *cub, int index)
 	}
 }
 
+// void	render_box(t_cub *cub, t_ray *ray, int box_height)
+// {
+// 	uint32_t	color;
+// 	mlx_image_t	**img;
+// 	uint32_t	x;
+// 	uint32_t	y;
+
+// 	mock_define_color(&color, ray);
+// 	img = &cub->render->boxes[ray->index];
+// 	destroy_box(cub, ray->index);
+// 	*img = mlx_new_image(cub->mlx, cub->render->width, box_height);
+// 	rectangle_fill(*img, color);
+// 	x = ray->index * cub->render->width;
+// 	y = WINDOW_HEIGHT / 2 - box_height / 2;
+// 	mlx_image_to_window(cub->mlx, *img, x, y);
+// }
+
 void	render_box(t_cub *cub, t_ray *ray, int box_height)
 {
-	uint32_t	color;
-	mlx_image_t	**img;
-	uint32_t	x;
-	uint32_t	y;
+	mlx_image_t		**img;
+	uint32_t		x;
+	uint32_t		y;
+	mlx_texture_t	*tex;
 
-	mock_define_color(&color, ray);
 	img = &cub->render->boxes[ray->index];
 	destroy_box(cub, ray->index);
-	*img = mlx_new_image(cub->mlx, cub->render->width, box_height);
-	rectangle_fill(*img, color);
+	if (ray->side == NORTH)
+		tex = cub->render->no;
+	else if (ray->side == SOUTH)
+		tex = cub->render->so;
+	else if (ray->side == EAST)
+		tex = cub->render->ea;
+	else if (ray->side == WEST)
+		tex = cub->render->we;
+	*img = mlx_new_image(cub->mlx, cub->render->width, tex->height);
+	texture_fill(*img, tex, ray->tex_x);
+	mlx_resize_image(*img, cub->render->width, box_height * 4);
 	x = ray->index * cub->render->width;
-	y = WINDOW_HEIGHT / 2 - box_height / 2;
+	y = WINDOW_HEIGHT / 2 - box_height;
 	mlx_image_to_window(cub->mlx, *img, x, y);
 }
 

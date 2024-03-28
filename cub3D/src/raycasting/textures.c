@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 17:27:36 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/27 18:05:05 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/28 11:23:01 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,42 @@
 void	textures_to_images(t_cub *cub)
 {
 	mlx_texture_t	*tex;
+	mlx_image_t		*img;
+	int				width = 32;
 
 	tex = mlx_load_png(cub->level.no);
+	printf("h: %d w: %d\n", tex->height, tex->width);
+	img = mlx_new_image(cub->mlx, width, tex->height);
+	texture_fill(img, tex, 31);
+	mlx_image_to_window(cub->mlx, img, 0, 0);
+	mlx_resize_image(img, width * 5, 64 * 5);
 }
 
-void	texture_fill(mlx_image_t *img, mlx_texture_t *tex, int start)
+void	texture_x(t_cub *cub, t_ray *ray)
 {
-	uint32_t 	i;
-	uint32_t 	j;
-	uint32_t	color;
-	uint8_t		*p;
+	double	wall_x;
+	double	tex_width;
 
-	i = -1;
-	while (++i < img->height)
+	if (ray->side == EAST)
 	{
-		j = -1;
-		while (++j < img->width)
-		{
-			p = tex->pixels + 4 * (i * tex->width + start + j);
-			color = color_rgba(*p, *(p + 1), *(p + 2), *(p + 3));
-			mlx_put_pixel(img, i, j, color);
-		}
+		wall_x = cub->player.pos_y + ray->perp_wall_dist * ray->dir_y;
+		tex_width = (double)cub->render->ea->width;
 	}
+	else if (ray->side == WEST)
+	{
+		wall_x = cub->player.pos_y + ray->perp_wall_dist * ray->dir_y;
+		tex_width = (double)cub->render->we->width;
+	}
+	else if (ray->side == NORTH)
+	{
+		wall_x = cub->player.pos_x + ray->perp_wall_dist * ray->dir_x;
+		tex_width = (double)cub->render->no->width;
+	}
+	else if (ray->side == SOUTH)
+	{
+		wall_x = cub->player.pos_x + ray->perp_wall_dist * ray->dir_x;
+		tex_width = (double)cub->render->so->width;
+	}
+	wall_x -= floor(wall_x);
+	ray->tex_x = (int)(wall_x * tex_width);
 }
