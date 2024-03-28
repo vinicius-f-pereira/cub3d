@@ -6,11 +6,12 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:05:49 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/28 15:51:02 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/28 19:39:55 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "import.h"
 
 void	set_initial_player_pos(t_cub *cub)
 {
@@ -27,14 +28,7 @@ void	set_initial_player_pos(t_cub *cub)
 			{
 				cub->player.pos_y = (double)i + 0.5;
 				cub->player.pos_x = (double)j + 0.5;
-				if (cub->level.map[i][j] == 'E')
-					cub->player.dir_x = 1;
-				else if (cub->level.map[i][j] == 'N')
-					cub->player.dir_y = -1;
-				else if (cub->level.map[i][j] == 'W')
-					cub->player.dir_x = -1;
-				else if (cub->level.map[i][j] == 'S')
-					cub->player.dir_y = 1;
+				set_player_dir(cub, i, j);
 				cub->level.map[i][j] = '0';
 				return ;
 			}
@@ -53,12 +47,6 @@ void	set_initial_plane(t_cub	*cub)
 
 void	render_destroy(t_cub *cub)
 {
-	int	i;
-
-	if (cub->render->ceiling)
-		mlx_delete_image(cub->mlx, cub->render->ceiling);
-	if (cub->render->floor)
-		mlx_delete_image(cub->mlx, cub->render->floor);
 	if (cub->render->no)
 		mlx_delete_texture(cub->render->no);
 	if (cub->render->so)
@@ -67,16 +55,10 @@ void	render_destroy(t_cub *cub)
 		mlx_delete_texture(cub->render->ea);
 	if (cub->render->we)
 		mlx_delete_texture(cub->render->we);
-	i = -1;
-	while (++i < N_RAYS)
-	{
-		if (cub->render->boxes[i])
-			mlx_delete_image(cub->mlx, cub->render->boxes[i]);
-	}
 	free (cub->render);
 }
 
-void	textures_init(t_cub *cub)
+bool	textures_init(t_cub *cub)
 {
 	cub->render->no = mlx_load_png(cub->level.no);
 	cub->render->so = mlx_load_png(cub->level.so);
@@ -86,8 +68,10 @@ void	textures_init(t_cub *cub)
 		|| !cub->render->ea || !cub->render->we)
 	{
 		render_destroy(cub);
-		exit (EXIT_FAILURE); //panic
+		error_message("Error initializing textures");
+		return (true);
 	}
+	return (false);
 }
 
 void	render_init(t_cub *cub)
@@ -97,8 +81,12 @@ void	render_init(t_cub *cub)
 
 	cub->render = ft_calloc(1, sizeof(t_render));
 	if (!cub->render)
-		exit (EXIT_FAILURE); //panic
-	textures_init(cub);
+		exit (EXIT_FAILURE);
+	if (textures_init(cub))
+	{
+		mlx_close_window(cub->mlx);
+		exit (EXIT_FAILURE);
+	}
 	cub->render->width = WINDOW_WIDTH / N_RAYS;
 	heights = WINDOW_HEIGHT / 2;
 	cub->render->ceiling = mlx_new_image(cub->mlx, WINDOW_WIDTH, heights);

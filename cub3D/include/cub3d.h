@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:38:52 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/28 14:26:55 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/03/28 18:33:32 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ void		render_init(t_cub *cub);
 void		render_destroy(t_cub *cub);
 void		render(t_cub *cub);
 void		textures_to_images(t_cub *cub);
+void		set_player_dir(t_cub *cub, int i, int j);
 
 //HOOK_FUNCTIONS
 void		ft_key_hook(mlx_key_data_t keydata, void *param);
@@ -152,10 +153,7 @@ void		ft_key_hook(mlx_key_data_t keydata, void *param);
 //UTILS
 uint32_t	color_rgba(int r, int g, int b, int a);
 void		rectangle_fill(mlx_image_t *img, uint32_t color);
-void 		rotate(double *x, double *y, double rad);
+void		rotate(double *x, double *y, double rad);
 void		texture_fill(mlx_image_t *img, mlx_texture_t *tex, int start);
-
-//DEBUG
-void		print_cub_import(t_level *lvl);
 
 #endif

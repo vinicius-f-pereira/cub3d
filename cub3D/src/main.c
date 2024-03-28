@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:40:49 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/28 15:44:04 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/28 18:13:40 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ int	main(int argc, char *argv[])
 	static t_cub	cub;
 
 	import(argc, argv, &cub.level);
-#ifdef DEBUG
-	printf("Import success\n");
-#endif
 	cub.mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "cub3d", true);
 	render_init(&cub);
 	render(&cub);

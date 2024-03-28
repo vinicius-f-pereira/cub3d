@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:19:46 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/28 15:45:31 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/28 18:25:17 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ static void	valid_new_pos(t_cub *cub, double dir_x, double dir_y)
 	delta[1] = LINEAR_SPEED * dir_y;
 	map_pos[0] = (int)cub->player.pos_x;
 	map_pos[1] = (int)cub->player.pos_y;
-	new_pos[0] = cub->player.pos_x + delta[0] + dir_x * 0.10;
+	new_pos[0] = cub->player.pos_x + delta[0] + dir_x * 0.30;
 	if (cub->level.map[map_pos[1]][(int)new_pos[0]] == '0')
 		cub->player.pos_x = cub->player.pos_x + delta[0];
-	new_pos[1] = cub->player.pos_y + delta[1] + dir_y * 0.10;
+	new_pos[1] = cub->player.pos_y + delta[1] + dir_y * 0.30;
 	if (cub->level.map[(int)new_pos[1]][map_pos[0]] == '0')
 		cub->player.pos_y = cub->player.pos_y + delta[1];
 }
@@ -66,7 +66,7 @@ void	ft_key_hook(mlx_key_data_t key, void *param)
 	if (key.key == MLX_KEY_ESCAPE)
 	{
 		mlx_close_window(cub->mlx);
-		return;
+		return ;
 	}
 	if (key.key == MLX_KEY_LEFT)
 		player_plane_rotation(cub, COUNTERCLOCKWISE);

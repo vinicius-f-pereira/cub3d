@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 09:29:56 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/28 09:36:58 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/28 19:54:14 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
  */
 void	texture_fill(mlx_image_t *img, mlx_texture_t *tex, int start)
 {
-	uint32_t i;
-	uint32_t j;
-	uint32_t color;
-	uint8_t *pixel;
+	uint32_t	i;
+	uint32_t	j;
+	uint32_t	color;
+	uint8_t		*pixel;
 
 	i = -1;
 	while (++i < img->height)
@@ -36,7 +36,7 @@ void	texture_fill(mlx_image_t *img, mlx_texture_t *tex, int start)
 		{
 			pixel = tex->pixels + 4 * (i * tex->width + start + j);
 			color = color_rgba(*pixel, *(pixel + 1),
-				*(pixel + 2), *(pixel + 3));
+					*(pixel + 2), *(pixel + 3));
 			mlx_put_pixel(img, i, j, color);
 		}
 	}

@@ -6,11 +6,12 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 21:41:45 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/28 14:19:33 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/03/28 18:14:47 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
 void	texture_x(t_cub *cub, t_ray *ray);
 
 static void	define_ray_delta(t_ray *ray)
@@ -91,7 +92,6 @@ t_ray	*raycasting(t_cub *cub, int ray_index)
 	t_ray		*ray;
 	const int	map_x = (int)cub->player.pos_x;
 	const int	map_y = (int)cub->player.pos_y;
-
 
 	ray = ft_calloc(1, sizeof(t_ray));
 	if (!ray)

@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 18:26:21 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/21 18:28:19 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/28 19:54:58 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
  * @param y - Pointer to the y-coordinate.
  * @param rad - The angle in radians.
  */
-void rotate(double *x, double *y, double rad)
+void	rotate(double *x, double *y, double rad)
 {
-	double x_temp;
-	double y_temp;
+	double	x_temp;
+	double	y_temp;
 
 	x_temp = *x;
 	y_temp = *y;

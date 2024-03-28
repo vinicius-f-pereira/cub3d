@@ -4,8 +4,7 @@ CC					=	cc
 CC_FLAGS			=	-Wall		\
 						-Wextra		\
 						-Werror		\
-						-pedantic	\
-						-g3
+						-pedantic
 
 #≻───░⋆ ✪ PROJECT DIRECTORIES & FILES ✪ ⋆░───────────────────────────────────≺#
 SRC_DIR				=	src
@@ -19,8 +18,6 @@ SRCS				=	$(addprefix $(SRC_DIR)/,				\
 							main.c)
 SRCS				+=	$(addprefix $(SRC_DIR)/controls/,		\
 							movements.c)
-SRCS				+=	$(addprefix $(SRC_DIR)/debug_tools/,	\
-							print_cub_import.c)
 SRCS 				+=	$(addprefix $(SRC_DIR)/import/,			\
 							errors.c							\
 							get_elements.c						\
@@ -91,16 +88,9 @@ define create_objects_dir
 endef
 
 #≻───░⋆ ✪ RULES ✪ ⋆░─────────────────────────────────────────────────────────≺#
-.PHONY: all bonus clean fclean clear re
+.PHONY: all clean fclean clear re
 
 all: $(NAME)
-
-bonus: $(NAME)
-
-debug: clean_cub3d
-debug: CC_FLAGS += -DDEBUG
-debug: NAME = cub3d_debug
-debug: all
 
 $(NAME): $(MLX42_LIB) $(LIBFT_LIB) $(BUILDS) $(INCLUDES)
 	@ $(CC) -o $(NAME)	\

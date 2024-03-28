@@ -6,11 +6,13 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 16:29:07 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/28 15:17:01 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/28 19:49:34 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "import.h"
+#include <stdlib.h>
 
 void	destroy_box(t_cub *cub, int index)
 {
@@ -39,7 +41,7 @@ void	render_box(t_cub *cub, t_ray *ray, int box_height)
 		tex = cub->render->so;
 	else if (ray->side == EAST)
 		tex = cub->render->ea;
-	else if (ray->side == WEST)
+	else
 		tex = cub->render->we;
 	*img = mlx_new_image(cub->mlx, cub->render->width, tex->height);
 	texture_fill(*img, tex, ray->tex_x);
@@ -60,11 +62,28 @@ void	render(t_cub *cub)
 	{
 		ray = raycasting(cub, i);
 		if (!ray)
-			exit (EXIT_FAILURE); //panic
+		{
+			render_destroy(cub);
+			mlx_close_window(cub->mlx);
+			error_message("Failed allocating ray");
+			exit (EXIT_FAILURE);
+		}
 		height = (int)(BOX_HEIGHT / ray->perp_wall_dist);
 		if (height > WINDOW_HEIGHT)
 			height = WINDOW_HEIGHT;
 		render_box(cub, ray, height);
 		free (ray);
 	}
+}
+
+void	set_player_dir(t_cub *cub, int i, int j)
+{
+	if (cub->level.map[i][j] == 'E')
+		cub->player.dir_x = 1;
+	else if (cub->level.map[i][j] == 'N')
+		cub->player.dir_y = -1;
+	else if (cub->level.map[i][j] == 'W')
+		cub->player.dir_x = -1;
+	else if (cub->level.map[i][j] == 'S')
+		cub->player.dir_y = 1;
 }
