@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:05:49 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/22 18:27:23 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/28 11:14:01 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,17 @@ void	render_destroy(t_cub *cub)
 	free (cub->render);
 }
 
+void	textures_init(t_cub *cub)
+{
+	cub->render->no = mlx_load_png(cub->level.no);
+	cub->render->so = mlx_load_png(cub->level.so);
+	cub->render->ea = mlx_load_png(cub->level.ea);
+	cub->render->we = mlx_load_png(cub->level.we);
+	if (!cub->render->no || !cub->render->so
+		|| !cub->render->ea || !cub->render->we)
+		exit (EXIT_FAILURE); //panic
+}
+
 void	render_init(t_cub *cub)
 {
 	uint32_t	color;
@@ -78,4 +89,5 @@ void	render_init(t_cub *cub)
 	mlx_image_to_window(cub->mlx, cub->render->floor, 0, WINDOW_HEIGHT / 2);
 	set_initial_player_pos(cub);
 	set_initial_plane(cub);
+	textures_init(cub);
 }
