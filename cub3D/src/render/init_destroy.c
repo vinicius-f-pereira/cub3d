@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:05:49 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/28 14:28:29 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/03/28 15:51:02 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,26 @@ void	set_initial_plane(t_cub	*cub)
 
 void	render_destroy(t_cub *cub)
 {
-	mlx_delete_image(cub->mlx, cub->render->ceiling);
-	mlx_delete_image(cub->mlx, cub->render->floor);
+	int	i;
+
+	if (cub->render->ceiling)
+		mlx_delete_image(cub->mlx, cub->render->ceiling);
+	if (cub->render->floor)
+		mlx_delete_image(cub->mlx, cub->render->floor);
+	if (cub->render->no)
+		mlx_delete_texture(cub->render->no);
+	if (cub->render->so)
+		mlx_delete_texture(cub->render->so);
+	if (cub->render->ea)
+		mlx_delete_texture(cub->render->ea);
+	if (cub->render->we)
+		mlx_delete_texture(cub->render->we);
+	i = -1;
+	while (++i < N_RAYS)
+	{
+		if (cub->render->boxes[i])
+			mlx_delete_image(cub->mlx, cub->render->boxes[i]);
+	}
 	free (cub->render);
 }
 
@@ -66,7 +84,10 @@ void	textures_init(t_cub *cub)
 	cub->render->we = mlx_load_png(cub->level.we);
 	if (!cub->render->no || !cub->render->so
 		|| !cub->render->ea || !cub->render->we)
+	{
+		render_destroy(cub);
 		exit (EXIT_FAILURE); //panic
+	}
 }
 
 void	render_init(t_cub *cub)

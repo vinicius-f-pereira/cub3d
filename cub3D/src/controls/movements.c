@@ -6,20 +6,11 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:19:46 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/28 14:14:31 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/03/28 15:45:31 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static void	ft_end_key(mlx_key_data_t key, t_cub *cub)
-{
-	if (key.key == MLX_KEY_ESCAPE)
-	{
-		mlx_close_window(cub->mlx);
-		return;
-	}
-}
 
 static void	valid_new_pos(t_cub *cub, double dir_x, double dir_y)
 {
@@ -72,7 +63,11 @@ void	ft_key_hook(mlx_key_data_t key, void *param)
 	t_cub	*cub;
 
 	cub = (t_cub *)param;
-	ft_end_key(key, cub);
+	if (key.key == MLX_KEY_ESCAPE)
+	{
+		mlx_close_window(cub->mlx);
+		return;
+	}
 	if (key.key == MLX_KEY_LEFT)
 		player_plane_rotation(cub, COUNTERCLOCKWISE);
 	else if (key.key == MLX_KEY_RIGHT)
