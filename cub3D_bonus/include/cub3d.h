@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bmoretti < bmoretti@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:38:52 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/25 15:42:40 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/29 09:01:55 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,6 @@
 # define ANGULAR_SPEED 0.05
 # define LINEAR_SPEED 0.05
 
-//COLORS
-# define BLACK 0x000000ff
-# define WHITE 0xffffffff
-# define RED 0xff0000ff
-# define GREEN 0x00ff00ff
-# define BLUE 0x0000ffff
-
 # define FOV 0.66
 # define BOX_HEIGHT 150.0
 
@@ -54,8 +47,8 @@ typedef struct s_level
 {
 	char	no[MAX_COLS + 1];
 	char	so[MAX_COLS + 1];
-	char	we[MAX_COLS + 1];
 	char	ea[MAX_COLS + 1];
+	char	we[MAX_COLS + 1];
 	int		f[3];
 	int		c[3];
 	char	map[MAX_ROWS + 1][MAX_COLS + 1];
@@ -88,10 +81,14 @@ typedef struct s_plane
 
 typedef struct s_render
 {
-	int			width;
-	mlx_image_t	*floor;
-	mlx_image_t	*ceiling;
-	mlx_image_t	*boxes[N_RAYS];
+	int				width;
+	mlx_image_t		*floor;
+	mlx_image_t		*ceiling;
+	mlx_image_t		*boxes[N_RAYS];
+	mlx_texture_t	*no;
+	mlx_texture_t	*so;
+	mlx_texture_t	*ea;
+	mlx_texture_t	*we;
 }	t_render;
 
 typedef struct s_ray
@@ -106,6 +103,7 @@ typedef struct s_ray
 	int		step_x;
 	int		step_y;
 	double	perp_wall_dist;
+	int		tex_x;
 	int		side;
 }	t_ray;
 
@@ -137,7 +135,10 @@ void		import(int argc, char *argv[], t_level *lvl);
 void		minimap(t_cub *cub);
 t_ray		*raycasting(t_cub *cub, int ray_index);
 void		render_init(t_cub *cub);
+void		render_destroy(t_cub *cub);
 void		render(t_cub *cub);
+void		set_player_dir(t_cub *cub, int i, int j);
+int			error_message(const char *error_msg);
 
 //HOOK_FUNCTIONS
 void		ft_key_hook(mlx_key_data_t keydata, void *param);
@@ -145,9 +146,7 @@ void		ft_key_hook(mlx_key_data_t keydata, void *param);
 //UTILS
 uint32_t	color_rgba(int r, int g, int b, int a);
 void		rectangle_fill(mlx_image_t *img, uint32_t color);
-void 		rotate(double *x, double *y, double rad);
-
-//DEBUG
-void		print_cub_import(t_level *lvl);
+void		rotate(double *x, double *y, double rad);
+void		texture_fill(mlx_image_t *img, mlx_texture_t *tex, int start);
 
 #endif

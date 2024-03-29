@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./textures/wolfenstein3D/redbrick.png
+SO ./textures/wolfenstein3D/colorstone.png
+WE ./textures/wolfenstein3D/greystone.png
+EA ./textures/wolfenstein3D/mossy.png
 
 F 100,100,100
 C 200,200,200

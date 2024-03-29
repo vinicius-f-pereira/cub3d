@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti < bmoretti@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:38:52 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/29 07:48:09 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/29 08:36:41 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,6 @@ enum	e_side
 };
 
 void		import(int argc, char *argv[], t_level *lvl);
-void		minimap(t_cub *cub);
 t_ray		*raycasting(t_cub *cub, int ray_index);
 void		render_init(t_cub *cub);
 void		render_destroy(t_cub *cub);

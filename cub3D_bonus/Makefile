@@ -5,23 +5,21 @@ CC_FLAGS			=	-Wall		\
 						-Wextra		\
 						-Werror		\
 						-pedantic	\
-						-g3
+						-O3
 
 #≻───░⋆ ✪ PROJECT DIRECTORIES & FILES ✪ ⋆░───────────────────────────────────≺#
 SRC_DIR				=	src
 INCLUDE_DIR			=	include
 INCLUDE_FILES		=	cub3d.h		\
-						import.h	\
-						minimap.h
+						import.h	
 INCLUDES			=	$(addprefix $(INCLUDE_DIR)/, $(INCLUDE_FILES))
 BUILD_DIR			=	build
 #≻───░file's paths
 SRCS				=	$(addprefix $(SRC_DIR)/,				\
 							main.c)
 SRCS				+=	$(addprefix $(SRC_DIR)/controls/,		\
+							mouse.c								\
 							movements.c)
-SRCS				+=	$(addprefix $(SRC_DIR)/debug_tools/,	\
-							print_cub_import.c)
 SRCS 				+=	$(addprefix $(SRC_DIR)/import/,			\
 							errors.c							\
 							get_elements.c						\
@@ -32,16 +30,16 @@ SRCS 				+=	$(addprefix $(SRC_DIR)/import/,			\
 SRCS				+=	$(addprefix $(SRC_DIR)/minimap/,		\
 							map_drawing.c						\
 							minimap.c)
-SRCS				+=	$(addprefix $(SRC_DIR)/keys/,			\
-							keys.c)
 SRCS				+=	$(addprefix $(SRC_DIR)/raycasting/,		\
-							raycasting.c)
+							raycasting.c						\
+							textures.c)
 SRCS				+=	$(addprefix $(SRC_DIR)/render/,			\
 							init_destroy.c						\
 							render.c)
 SRCS				+=	$(addprefix $(SRC_DIR)/utils/,			\
 							colors.c							\
-							rotate.c)
+							rotate.c							\
+							texture_fill.c)
 OBJS	 			=	$(SRCS:%.c=%.o)
 BUILDS				=	$(addprefix $(BUILD_DIR)/, $(OBJS))
 
@@ -95,16 +93,9 @@ define create_objects_dir
 endef
 
 #≻───░⋆ ✪ RULES ✪ ⋆░─────────────────────────────────────────────────────────≺#
-.PHONY: all bonus clean fclean clear re
+.PHONY: all clean fclean clear re
 
 all: $(NAME)
-
-bonus: $(NAME)
-
-debug: clean_cub3d
-debug: CC_FLAGS += -DDEBUG
-debug: NAME = cub3d_debug
-debug: all
 
 $(NAME): $(MLX42_LIB) $(LIBFT_LIB) $(BUILDS) $(INCLUDES)
 	@ $(CC) -o $(NAME)	\
@@ -155,7 +146,6 @@ clean_MLX: $(MLX42_DIR)
 
 fclean_cub3d: clean_cub3d
 	@ rm -rf $(NAME)
-	@ rm -rf $(NAME)_debug
 
 fclean_libft: $(LIBFT_DIR)
 	@ make -s -C $(LIBFT_DIR) fclean

@@ -4,7 +4,8 @@ CC					=	cc
 CC_FLAGS			=	-Wall		\
 						-Wextra		\
 						-Werror		\
-						-pedantic
+						-pedantic	\
+						-O3
 
 #≻───░⋆ ✪ PROJECT DIRECTORIES & FILES ✪ ⋆░───────────────────────────────────≺#
 SRC_DIR				=	src
