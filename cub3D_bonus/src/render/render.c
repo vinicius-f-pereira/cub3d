@@ -6,7 +6,7 @@
 /*   By: bmoretti < bmoretti@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 16:29:07 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/29 08:46:38 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/29 09:55:54 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ void	render_box(t_cub *cub, t_ray *ray, int box_height)
 
 	img = &cub->render->boxes[ray->index];
 	destroy_box(cub, ray->index);
-	if (ray->side == NORTH)
+	if (ray->obj == 'D')
+		tex = cub->render->door;
+	else if (ray->side == NORTH)
 		tex = cub->render->no;
 	else if (ray->side == SOUTH)
 		tex = cub->render->so;

@@ -18,6 +18,7 @@ BUILD_DIR			=	build
 SRCS				=	$(addprefix $(SRC_DIR)/,				\
 							main.c)
 SRCS				+=	$(addprefix $(SRC_DIR)/controls/,		\
+							door.c								\
 							mouse.c								\
 							movements.c)
 SRCS 				+=	$(addprefix $(SRC_DIR)/import/,			\

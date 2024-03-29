@@ -6,13 +6,15 @@
 /*   By: bmoretti < bmoretti@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:19:46 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/29 08:55:52 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:43:22 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 void	mouse_follow(t_cub *cub);
+void	door_opening(t_cub *cub);
+void	door_closing(t_cub *cub);
 
 static void	valid_new_pos(t_cub *cub, double dir_x, double dir_y)
 {
@@ -25,10 +27,10 @@ static void	valid_new_pos(t_cub *cub, double dir_x, double dir_y)
 	map_pos[0] = (int)cub->player.pos_x;
 	map_pos[1] = (int)cub->player.pos_y;
 	new_pos[0] = cub->player.pos_x + delta[0] + dir_x * 0.30;
-	if (cub->level.map[map_pos[1]][(int)new_pos[0]] == '0')
+	if (ft_strchr("0d", cub->level.map[map_pos[1]][(int)new_pos[0]]))
 		cub->player.pos_x = cub->player.pos_x + delta[0];
 	new_pos[1] = cub->player.pos_y + delta[1] + dir_y * 0.30;
-	if (cub->level.map[(int)new_pos[1]][map_pos[0]] == '0')
+	if (ft_strchr("0d", cub->level.map[(int)new_pos[1]][map_pos[0]]))
 		cub->player.pos_y = cub->player.pos_y + delta[1];
 }
 
@@ -78,4 +80,7 @@ void	ft_key_hook(mlx_key_data_t key, void *param)
 	if (key.key == MLX_KEY_W || key.key == MLX_KEY_A || key.key == MLX_KEY_S
 		|| key.key == MLX_KEY_D)
 		wasd(cub, key.key);
+	if (key.key == MLX_KEY_SPACE)
+		door_opening(cub);
+	door_closing(cub);
 }

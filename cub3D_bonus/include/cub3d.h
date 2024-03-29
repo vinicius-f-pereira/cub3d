@@ -6,7 +6,7 @@
 /*   By: bmoretti < bmoretti@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:38:52 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/29 09:01:55 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:30:35 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct s_plane
 	double	y;
 }	t_plane;
 
+# define DOOR_TEX "./textures/wolfenstein3D/eagle.png"
 typedef struct s_render
 {
 	int				width;
@@ -89,6 +90,7 @@ typedef struct s_render
 	mlx_texture_t	*so;
 	mlx_texture_t	*ea;
 	mlx_texture_t	*we;
+	mlx_texture_t	*door;
 }	t_render;
 
 typedef struct s_ray
@@ -105,6 +107,7 @@ typedef struct s_ray
 	double	perp_wall_dist;
 	int		tex_x;
 	int		side;
+	char	obj;
 }	t_ray;
 
 typedef struct s_cub
@@ -115,6 +118,7 @@ typedef struct s_cub
 	t_player	player;
 	t_plane		plane;
 	t_render	*render;
+	double		door_last_time;
 }	t_cub;
 
 enum	e_direction
@@ -132,6 +136,7 @@ enum	e_side
 };
 
 void		import(int argc, char *argv[], t_level *lvl);
+void		minimap_square_size_and_border(t_cub *cub);
 void		minimap(t_cub *cub);
 t_ray		*raycasting(t_cub *cub, int ray_index);
 void		render_init(t_cub *cub);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_destroy.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti < bmoretti@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:05:49 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/28 19:39:55 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/03/29 09:48:27 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ bool	textures_init(t_cub *cub)
 	cub->render->so = mlx_load_png(cub->level.so);
 	cub->render->ea = mlx_load_png(cub->level.ea);
 	cub->render->we = mlx_load_png(cub->level.we);
+	cub->render->door = mlx_load_png(DOOR_TEX);
 	if (!cub->render->no || !cub->render->so
 		|| !cub->render->ea || !cub->render->we)
 	{

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bmoretti < bmoretti@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:09:36 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/25 17:32:04 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/29 09:23:08 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minimap.h"
 
-void	square_size_and_border(t_cub *cub)
+void	minimap_square_size_and_border(t_cub *cub)
 {
 	int	x;
 	int	y;
@@ -33,7 +33,6 @@ void	minimap(t_cub *cub)
 {
 	int	side;
 
-	square_size_and_border(cub);
 	side = cub->mini.side;
 	if (cub->mini.wall)
 		mlx_delete_image(cub->mlx, cub->mini.wall);
