@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:29:08 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/22 13:25:23 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/29 07:48:23 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef struct s_import_elements
 
 int		basic_validation(int argc, char *argv[]);
 
-int		error_message(const char *error_msg);
 void	exit_error_message(const char *error_msg, const int error_code);
 void	get_elements_error(t_import_elements *lvl_el,
 			const char *error_msg, const int error_code);

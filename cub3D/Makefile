@@ -141,7 +141,6 @@ clean_MLX: $(MLX42_DIR)
 
 fclean_cub3d: clean_cub3d
 	@ rm -rf $(NAME)
-	@ rm -rf $(NAME)_debug
 
 fclean_libft: $(LIBFT_DIR)
 	@ make -s -C $(LIBFT_DIR) fclean

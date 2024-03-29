@@ -6,7 +6,7 @@
 /*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:38:52 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/28 18:33:32 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/03/29 07:48:09 by brmoretti        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,6 @@
 # define ANGULAR_SPEED 0.05
 # define LINEAR_SPEED 0.05
 
-//COLORS
-# define BLACK 0x000000ff
-# define WHITE 0xffffffff
-# define RED 0xff0000ff
-# define GREEN 0x00ff00ff
-# define BLUE 0x0000ffff
-
 # define FOV 0.66
 # define BOX_HEIGHT 150.0
 
@@ -62,15 +55,6 @@ typedef struct s_level
 	size_t	x_size;
 	size_t	y_size;
 }	t_level;
-
-typedef struct s_minimap
-{
-	mlx_image_t	*wall;
-	mlx_image_t	*floor;
-	mlx_image_t	*player;
-	int			side;
-	int			border;
-}	t_minimap;
 
 typedef struct s_player
 {
@@ -118,7 +102,6 @@ typedef struct s_cub
 {
 	mlx_t		*mlx;
 	t_level		level;
-	t_minimap	mini;
 	t_player	player;
 	t_plane		plane;
 	t_render	*render;
@@ -144,8 +127,8 @@ t_ray		*raycasting(t_cub *cub, int ray_index);
 void		render_init(t_cub *cub);
 void		render_destroy(t_cub *cub);
 void		render(t_cub *cub);
-void		textures_to_images(t_cub *cub);
 void		set_player_dir(t_cub *cub, int i, int j);
+int			error_message(const char *error_msg);
 
 //HOOK_FUNCTIONS
 void		ft_key_hook(mlx_key_data_t keydata, void *param);
