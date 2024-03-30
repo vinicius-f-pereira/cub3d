@@ -6,7 +6,7 @@
 /*   By: bmoretti < bmoretti@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:19:46 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/29 11:43:22 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/30 00:26:46 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static void	wasd(t_cub *cub, keys_t key)
 	double	dir_y;
 
 	mouse_follow(cub);
+	cub->render_on = true;
 	dir_x = cub->player.dir_x;
 	dir_y = cub->player.dir_y;
 	if (key == MLX_KEY_A || key == MLX_KEY_D)
@@ -57,6 +58,7 @@ static void	player_plane_rotation(t_cub *cub, int direction)
 {
 	double	speed;
 
+	cub->render_on = true;
 	speed = (double)direction * ANGULAR_SPEED;
 	rotate(&cub->player.dir_x, &cub->player.dir_y, speed);
 	rotate(&cub->plane.x, &cub->plane.y, speed);
@@ -73,12 +75,12 @@ void	ft_key_hook(mlx_key_data_t key, void *param)
 		mlx_close_window(cub->mlx);
 		return ;
 	}
-	if (key.key == MLX_KEY_LEFT)
+	if (key.key == MLX_KEY_LEFT && !cub->render_on)
 		player_plane_rotation(cub, COUNTERCLOCKWISE);
-	else if (key.key == MLX_KEY_RIGHT)
+	else if (key.key == MLX_KEY_RIGHT && !cub->render_on)
 		player_plane_rotation(cub, CLOCKWISE);
-	if (key.key == MLX_KEY_W || key.key == MLX_KEY_A || key.key == MLX_KEY_S
-		|| key.key == MLX_KEY_D)
+	if ((key.key == MLX_KEY_W || key.key == MLX_KEY_A || key.key == MLX_KEY_S
+		|| key.key == MLX_KEY_D) && !cub->render_on)
 		wasd(cub, key.key);
 	if (key.key == MLX_KEY_SPACE)
 		door_opening(cub);

@@ -6,7 +6,7 @@
 /*   By: bmoretti < bmoretti@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:38:52 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/29 23:49:06 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/03/30 00:47:08 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define MAX_COLS 80
 
 //RAYCASTING
-# define N_RAYS 800
+# define N_RAYS 400
 
 //MLX WINDOW PROPERTIES
 # define WINDOW_WIDTH 800
@@ -135,6 +135,8 @@ typedef struct s_cub
 	t_plane		plane;
 	t_render	*render;
 	double		door_last_time;
+	double		delay;
+	bool		render_on;
 }	t_cub;
 
 enum	e_direction
@@ -170,5 +172,6 @@ void		rectangle_fill(mlx_image_t *img, uint32_t color);
 void		rotate(double *x, double *y, double rad);
 void		texture_fill(mlx_image_t *img, mlx_texture_t *tex, int start);
 void		knife(t_cub *cub);
+void		ft_time(void *param);
 
 #endif
