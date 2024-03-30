@@ -6,7 +6,7 @@
 /*   By: bmoretti < bmoretti@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:38:52 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/29 11:30:35 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/29 23:49:06 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define MAX_COLS 80
 
 //RAYCASTING
-# define N_RAYS 400
+# define N_RAYS 800
 
 //MLX WINDOW PROPERTIES
 # define WINDOW_WIDTH 800
@@ -42,6 +42,20 @@
 
 # define FOV 0.66
 # define BOX_HEIGHT 150.0
+
+//TEXTURES
+# define DOOR_TEX "./textures/wolfenstein3D/door.png"
+# define KNIFE_TEX "./textures/wolfenstein3D/knifewalk.png"
+# define KNIFE_H_TEX "./textures/wolfenstein3D/knifehit.png"
+
+typedef struct s_weapon
+{
+	mlx_image_t	*walk;
+	mlx_image_t	*attack;
+	mlx_image_t	*wall;
+	mlx_image_t	*floor;
+	mlx_image_t	*player;
+}	t_weapon;
 
 typedef struct s_level
 {
@@ -79,7 +93,6 @@ typedef struct s_plane
 	double	y;
 }	t_plane;
 
-# define DOOR_TEX "./textures/wolfenstein3D/eagle.png"
 typedef struct s_render
 {
 	int				width;
@@ -91,6 +104,8 @@ typedef struct s_render
 	mlx_texture_t	*ea;
 	mlx_texture_t	*we;
 	mlx_texture_t	*door;
+	mlx_texture_t	*knife1;
+	mlx_texture_t	*knife2;
 }	t_render;
 
 typedef struct s_ray
@@ -115,6 +130,7 @@ typedef struct s_cub
 	mlx_t		*mlx;
 	t_level		level;
 	t_minimap	mini;
+	t_weapon	weapon;
 	t_player	player;
 	t_plane		plane;
 	t_render	*render;
@@ -153,5 +169,6 @@ uint32_t	color_rgba(int r, int g, int b, int a);
 void		rectangle_fill(mlx_image_t *img, uint32_t color);
 void		rotate(double *x, double *y, double rad);
 void		texture_fill(mlx_image_t *img, mlx_texture_t *tex, int start);
+void		knife(t_cub *cub);
 
 #endif

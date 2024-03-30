@@ -6,7 +6,7 @@
 /*   By: bmoretti < bmoretti@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:05:49 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/29 09:48:27 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/29 21:12:04 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ void	render_destroy(t_cub *cub)
 		mlx_delete_texture(cub->render->ea);
 	if (cub->render->we)
 		mlx_delete_texture(cub->render->we);
+	if (cub->render->door)
+		mlx_delete_texture(cub->render->door);
+	if (cub->render->knife1)
+		mlx_delete_texture(cub->render->knife1);
+	if (cub->render->knife2)
+		mlx_delete_texture(cub->render->knife2);
 	free (cub->render);
 }
 
@@ -65,6 +71,8 @@ bool	textures_init(t_cub *cub)
 	cub->render->ea = mlx_load_png(cub->level.ea);
 	cub->render->we = mlx_load_png(cub->level.we);
 	cub->render->door = mlx_load_png(DOOR_TEX);
+	cub->render->knife1 = mlx_load_png(KNIFE_TEX);
+	cub->render->knife2 = mlx_load_png(KNIFE_H_TEX);
 	if (!cub->render->no || !cub->render->so
 		|| !cub->render->ea || !cub->render->we)
 	{

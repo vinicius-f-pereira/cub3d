@@ -6,7 +6,7 @@
 /*   By: bmoretti < bmoretti@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 16:29:07 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/29 09:55:54 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/29 21:14:54 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	render(t_cub *cub)
 		free (ray);
 	}
 	minimap(cub);
+	knife(cub);
 }
 
 void	set_player_dir(t_cub *cub, int i, int j)
