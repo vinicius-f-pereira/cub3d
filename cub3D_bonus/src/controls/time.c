@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keys.c                                             :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vde-frei <vde-frei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/18 18:31:06 by vde-frei          #+#    #+#             */
-/*   Updated: 2024/03/24 19:59:58 by vde-frei         ###   ########.fr       */
+/*   Created: 2024/03/30 00:51:12 by vde-frei          #+#    #+#             */
+/*   Updated: 2024/03/30 01:19:18 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MLX42.h"
-#include "keys.h"
+#include "cub3d.h"
 
-void	ft_end_key(mlx_key_data_t key, t_cub *cub)
+void	ft_time(void *param)
 {
-	if (key.key == MLX_KEY_ESCAPE)
-	{
-		mlx_close_window(cub->mlx);
-		return;
-	}
+	t_cub	*cub;
+
+	cub = (t_cub *)param;
+	if (mlx_get_time() > cub->delay)
+		cub->render_on = false;
 }

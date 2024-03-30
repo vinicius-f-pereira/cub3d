@@ -3,26 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: bmoretti < bmoretti@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 16:29:07 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/25 13:25:19 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/30 00:57:58 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render.h"
-
-void	mock_define_color(uint32_t *color, t_ray *ray)
-{
-	if (ray->side == -1)
-		*color = WHITE;
-	else if (ray->side == 1)
-		*color = RED;
-	else if (ray->side == 2)
-		*color = GREEN;
-	else
-		*color = BLUE;
-}
+#include "cub3d.h"
+#include <stdlib.h>
 
 void	destroy_box(t_cub *cub, int index)
 {
@@ -38,18 +27,28 @@ void	destroy_box(t_cub *cub, int index)
 
 void	render_box(t_cub *cub, t_ray *ray, int box_height)
 {
-	uint32_t	color;
-	mlx_image_t	**img;
-	uint32_t	x;
-	uint32_t	y;
+	mlx_image_t		**img;
+	uint32_t		x;
+	uint32_t		y;
+	mlx_texture_t	*tex;
 
-	mock_define_color(&color, ray);
 	img = &cub->render->boxes[ray->index];
 	destroy_box(cub, ray->index);
-	*img = mlx_new_image(cub->mlx, cub->render->width, box_height);
-	rectangle_fill(*img, color);
+	if (ray->obj == 'D')
+		tex = cub->render->door;
+	else if (ray->side == NORTH)
+		tex = cub->render->no;
+	else if (ray->side == SOUTH)
+		tex = cub->render->so;
+	else if (ray->side == EAST)
+		tex = cub->render->ea;
+	else
+		tex = cub->render->we;
+	*img = mlx_new_image(cub->mlx, cub->render->width, tex->height);
+	texture_fill(*img, tex, ray->tex_x);
+	mlx_resize_image(*img, cub->render->width, box_height * 4);
 	x = ray->index * cub->render->width;
-	y = WINDOW_HEIGHT / 2 - box_height / 2;
+	y = WINDOW_HEIGHT / 2 - box_height;
 	mlx_image_to_window(cub->mlx, *img, x, y);
 }
 
@@ -64,7 +63,12 @@ void	render(t_cub *cub)
 	{
 		ray = raycasting(cub, i);
 		if (!ray)
-			exit (EXIT_FAILURE); //panic
+		{
+			render_destroy(cub);
+			mlx_close_window(cub->mlx);
+			error_message("Failed allocating ray");
+			exit (EXIT_FAILURE);
+		}
 		height = (int)(BOX_HEIGHT / ray->perp_wall_dist);
 		if (height > WINDOW_HEIGHT)
 			height = WINDOW_HEIGHT;
@@ -72,4 +76,17 @@ void	render(t_cub *cub)
 		free (ray);
 	}
 	minimap(cub);
+	knife(cub);
+}
+
+void	set_player_dir(t_cub *cub, int i, int j)
+{
+	if (cub->level.map[i][j] == 'E')
+		cub->player.dir_x = 1;
+	else if (cub->level.map[i][j] == 'N')
+		cub->player.dir_y = -1;
+	else if (cub->level.map[i][j] == 'W')
+		cub->player.dir_x = -1;
+	else if (cub->level.map[i][j] == 'S')
+		cub->player.dir_y = 1;
 }

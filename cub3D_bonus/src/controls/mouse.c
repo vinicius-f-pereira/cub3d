@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmoretti < bmoretti@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/06 22:40:49 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/30 00:52:00 by vde-frei         ###   ########.fr       */
+/*   Created: 2024/03/29 08:51:22 by bmoretti          #+#    #+#             */
+/*   Updated: 2024/03/30 01:44:49 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char *argv[])
+void	mouse_follow(t_cub *cub)
 {
-	static t_cub	cub;
+	int32_t	pos[2];
+	double	rotation;
+	double	signal;
 
-	import(argc, argv, &cub.level);
-	cub.mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "cub3d", true);
-	render_init(&cub);
-	minimap_square_size_and_border(&cub);
-	render(&cub);
-	mlx_key_hook(cub.mlx, ft_key_hook, &cub);
-	mlx_loop_hook(cub.mlx, &ft_time, &cub);
-	mlx_loop(cub.mlx);
-	mlx_terminate(cub.mlx);
-	render_destroy(&cub);
-	return (0);
+	mlx_get_mouse_pos(cub->mlx, &pos[0], &pos[1]);
+	rotation = ((double)pos[0] - WINDOW_WIDTH / 2.0) / (WINDOW_WIDTH / 2.0);
+	if (rotation < 0)
+		signal = -1.0;
+	else
+		signal = 1.0;
+	rotation *= rotation * signal / 10;
+	rotate(&cub->player.dir_x, &cub->player.dir_y, rotation);
+	rotate(&cub->plane.x, &cub->plane.y, rotation);
 }

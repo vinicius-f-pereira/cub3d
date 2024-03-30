@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti < bmoretti@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 21:41:45 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/22 10:57:34 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/29 09:39:50 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	texture_x(t_cub *cub, t_ray *ray);
 
 static void	define_ray_delta(t_ray *ray)
 {
@@ -76,8 +78,11 @@ static void	dda(t_cub *cub, t_ray *ray, int map_x, int map_y)
 			map_y += ray->step_y;
 			ray->side = ray->step_y * 2;
 		}
-		if (cub->level.map[map_y][map_x] == '1')
+		if (ft_strchr("1D", cub->level.map[map_y][map_x]))
+		{
+			ray->obj = cub->level.map[map_y][map_x];
 			break ;
+		}
 	}
 	if (ray->side == EAST || ray->side == WEST)
 		ray->perp_wall_dist = ray->side_dist_x - ray->delta_dist_x;
@@ -91,8 +96,7 @@ t_ray	*raycasting(t_cub *cub, int ray_index)
 	const int	map_x = (int)cub->player.pos_x;
 	const int	map_y = (int)cub->player.pos_y;
 
-
-	ray = malloc(sizeof(t_ray));
+	ray = ft_calloc(1, sizeof(t_ray));
 	if (!ray)
 		return (NULL);
 	ray->index = ray_index;
@@ -100,5 +104,6 @@ t_ray	*raycasting(t_cub *cub, int ray_index)
 	define_ray_delta(ray);
 	define_ray_side_dist(ray, cub->player.pos_x, cub->player.pos_y);
 	dda(cub, ray, map_x, map_y);
+	texture_x(cub, ray);
 	return (ray);
 }

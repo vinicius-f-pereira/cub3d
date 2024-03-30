@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./textures/wolfenstein3D/redbrick.png
+SO ./textures/wolfenstein3D/colorstone.png
+WE ./textures/wolfenstein3D/greystone.png
+EA ./textures/wolfenstein3D/mossy.png
 
 F 100,100,100
 C 200,200,200
@@ -16,7 +16,7 @@ C 200,200,200
 101  100011111
 1011 100100001
 100011101010001
- 1101 10001010111
+ 1D01 10001010111
 10001 111110000001
 10N01   1011111101
  111    1000000001

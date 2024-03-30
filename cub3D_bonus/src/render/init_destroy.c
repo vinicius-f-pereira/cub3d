@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   init_destroy.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti < bmoretti@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:05:49 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/22 18:27:23 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/29 21:12:04 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render.h"
+#include "cub3d.h"
+#include "import.h"
 
 void	set_initial_player_pos(t_cub *cub)
 {
@@ -27,14 +28,7 @@ void	set_initial_player_pos(t_cub *cub)
 			{
 				cub->player.pos_y = (double)i + 0.5;
 				cub->player.pos_x = (double)j + 0.5;
-				if (cub->level.map[i][j] == 'E')
-					cub->player.dir_x = 1;
-				else if (cub->level.map[i][j] == 'N')
-					cub->player.dir_y = -1;
-				else if (cub->level.map[i][j] == 'W')
-					cub->player.dir_x = -1;
-				else if (cub->level.map[i][j] == 'S')
-					cub->player.dir_y = 1;
+				set_player_dir(cub, i, j);
 				cub->level.map[i][j] = '0';
 				return ;
 			}
@@ -53,9 +47,40 @@ void	set_initial_plane(t_cub	*cub)
 
 void	render_destroy(t_cub *cub)
 {
-	mlx_delete_image(cub->mlx, cub->render->ceiling);
-	mlx_delete_image(cub->mlx, cub->render->floor);
+	if (cub->render->no)
+		mlx_delete_texture(cub->render->no);
+	if (cub->render->so)
+		mlx_delete_texture(cub->render->so);
+	if (cub->render->ea)
+		mlx_delete_texture(cub->render->ea);
+	if (cub->render->we)
+		mlx_delete_texture(cub->render->we);
+	if (cub->render->door)
+		mlx_delete_texture(cub->render->door);
+	if (cub->render->knife1)
+		mlx_delete_texture(cub->render->knife1);
+	if (cub->render->knife2)
+		mlx_delete_texture(cub->render->knife2);
 	free (cub->render);
+}
+
+bool	textures_init(t_cub *cub)
+{
+	cub->render->no = mlx_load_png(cub->level.no);
+	cub->render->so = mlx_load_png(cub->level.so);
+	cub->render->ea = mlx_load_png(cub->level.ea);
+	cub->render->we = mlx_load_png(cub->level.we);
+	cub->render->door = mlx_load_png(DOOR_TEX);
+	cub->render->knife1 = mlx_load_png(KNIFE_TEX);
+	cub->render->knife2 = mlx_load_png(KNIFE_H_TEX);
+	if (!cub->render->no || !cub->render->so
+		|| !cub->render->ea || !cub->render->we)
+	{
+		render_destroy(cub);
+		error_message("Error initializing textures");
+		return (true);
+	}
+	return (false);
 }
 
 void	render_init(t_cub *cub)
@@ -63,9 +88,14 @@ void	render_init(t_cub *cub)
 	uint32_t	color;
 	uint32_t	heights;
 
-	cub->render = malloc(sizeof(t_render));
+	cub->render = ft_calloc(1, sizeof(t_render));
 	if (!cub->render)
 		exit (EXIT_FAILURE);
+	if (textures_init(cub))
+	{
+		mlx_close_window(cub->mlx);
+		exit (EXIT_FAILURE);
+	}
 	cub->render->width = WINDOW_WIDTH / N_RAYS;
 	heights = WINDOW_HEIGHT / 2;
 	cub->render->ceiling = mlx_new_image(cub->mlx, WINDOW_WIDTH, heights);

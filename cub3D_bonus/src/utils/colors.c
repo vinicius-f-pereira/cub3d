@@ -6,7 +6,7 @@
 /*   By: bmoretti <bmoretti@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:15:34 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/21 18:30:52 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/28 19:53:02 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
  */
 void	rectangle_fill(mlx_image_t *img, uint32_t color)
 {
-	uint32_t i;
-	uint32_t j;
+	uint32_t	i;
+	uint32_t	j;
 
 	i = -1;
 	while (++i < img->width)

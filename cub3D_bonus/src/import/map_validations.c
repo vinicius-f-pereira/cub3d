@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validations.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brmoretti <brmoretti@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bmoretti < bmoretti@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 18:48:25 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/26 20:26:35 by brmoretti        ###   ########.fr       */
+/*   Updated: 2024/03/29 09:25:27 by bmoretti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	walls_around(t_level *lvl, int i, int j)
 
 static void	valid_char(const char c, int *count_player)
 {
-	const char	valids[4] = " 01";
+	const char	valids[5] = " 01D";
 	const char	player[5] = "NSEW";
 
 	if (ft_strchr(valids, c))
