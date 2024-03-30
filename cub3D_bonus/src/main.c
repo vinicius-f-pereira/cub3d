@@ -6,7 +6,7 @@
 /*   By: bmoretti < bmoretti@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:40:49 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/30 00:52:00 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/03/30 11:58:05 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int argc, char *argv[])
 	static t_cub	cub;
 
 	import(argc, argv, &cub.level);
-	cub.mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "cub3d", true);
+	cub.mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "cub3d", false);
 	render_init(&cub);
 	minimap_square_size_and_border(&cub);
 	render(&cub);
