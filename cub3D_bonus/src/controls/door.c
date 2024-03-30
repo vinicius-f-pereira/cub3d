@@ -6,7 +6,7 @@
 /*   By: bmoretti < bmoretti@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:05:17 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/29 23:53:32 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/03/30 01:27:10 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ void	door_closing(t_cub *cub)
 	const int	pos_x = (int)cub->player.pos_x;
 	const int	pos_y = (int)cub->player.pos_y;
 
-	if ((int)cub->door_last_time == 0 || time < cub->door_last_time + 5.0)
-		return;
+	if ((int)cub->door_last_time == 0 || time < cub->door_last_time + 3.0)
+		return ;
 	i = -1;
 	while (cub->level.map[++i][0])
 	{
 		j = -1;
 		while (cub->level.map[i][++j])
 		{
-			if (cub->level.map[i][j] == 'd' && i != pos_y && j != pos_x)
+			if (cub->level.map[i][j] == 'd' && (i != pos_y || j != pos_x))
 			{
 				cub->level.map[i][j] = 'D';
 				cub->door_last_time = 0.0;
