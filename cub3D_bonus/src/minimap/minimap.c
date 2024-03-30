@@ -6,7 +6,7 @@
 /*   By: bmoretti < bmoretti@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:09:36 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/29 23:32:46 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/03/30 01:45:24 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	minimap(t_cub *cub)
 
 void	knife(t_cub *cub)
 {
-	double time;
+	double	time;
 
 	time = mlx_get_time();
 	if (cub->weapon.walk)

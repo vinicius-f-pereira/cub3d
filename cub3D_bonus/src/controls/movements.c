@@ -6,7 +6,7 @@
 /*   By: bmoretti < bmoretti@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:19:46 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/30 01:15:21 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/03/30 01:42:15 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	ft_key_hook(mlx_key_data_t key, void *param)
 	else if (key.key == MLX_KEY_RIGHT && !cub->render_on)
 		player_plane_rotation(cub, CLOCKWISE);
 	if ((key.key == MLX_KEY_W || key.key == MLX_KEY_A || key.key == MLX_KEY_S
-		|| key.key == MLX_KEY_D) && !cub->render_on)
+			|| key.key == MLX_KEY_D) && !cub->render_on)
 		wasd(cub, key.key);
 	if (key.key == MLX_KEY_SPACE)
 		door_opening(cub);

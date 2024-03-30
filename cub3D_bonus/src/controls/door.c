@@ -6,7 +6,7 @@
 /*   By: bmoretti < bmoretti@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:05:17 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/30 01:27:10 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/03/30 01:43:32 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	door_closing(t_cub *cub)
 {
-	const double time = mlx_get_time();
-	int			i;
-	int			j;
-	const int	pos_x = (int)cub->player.pos_x;
-	const int	pos_y = (int)cub->player.pos_y;
+	const double	time = mlx_get_time();
+	int				i;
+	int				j;
+	const int		pos_x = (int)cub->player.pos_x;
+	const int		pos_y = (int)cub->player.pos_y;
 
 	if ((int)cub->door_last_time == 0 || time < cub->door_last_time + 3.0)
 		return ;
