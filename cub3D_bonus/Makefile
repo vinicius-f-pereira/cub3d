@@ -20,6 +20,7 @@ SRCS				=	$(addprefix $(SRC_DIR)/,				\
 SRCS				+=	$(addprefix $(SRC_DIR)/controls/,		\
 							door.c								\
 							mouse.c								\
+							time.c								\
 							movements.c)
 SRCS 				+=	$(addprefix $(SRC_DIR)/import/,			\
 							errors.c							\

@@ -6,12 +6,11 @@
 /*   By: bmoretti < bmoretti@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 16:29:07 by bmoretti          #+#    #+#             */
-/*   Updated: 2024/03/29 21:14:54 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/03/30 00:57:58 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "import.h"
 #include <stdlib.h>
 
 void	destroy_box(t_cub *cub, int index)

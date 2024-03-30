@@ -6,7 +6,7 @@
 /*   By: bmoretti < bmoretti@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:38:52 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/30 00:47:08 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/03/30 01:09:16 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@
 # define WINDOW_HEIGHT 600
 
 //MOVEMENTS
-# define ANGULAR_SPEED 0.05
-# define LINEAR_SPEED 0.05
+# define ANGULAR_SPEED 0.09
+# define LINEAR_SPEED 0.09
 
 # define FOV 0.66
 # define BOX_HEIGHT 150.0

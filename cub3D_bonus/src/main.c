@@ -6,21 +6,11 @@
 /*   By: bmoretti < bmoretti@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:40:49 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/30 00:17:18 by vde-frei         ###   ########.fr       */
+/*   Updated: 2024/03/30 00:52:00 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	ft_time(void *param)
-{
-	t_cub	*cub;
-
-	cub = (t_cub *)param;
-
-	if (mlx_get_time() > cub->delay)
-		cub->render_on = false;
-}
 
 int	main(int argc, char *argv[])
 {
