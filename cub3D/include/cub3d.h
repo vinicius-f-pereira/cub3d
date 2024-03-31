@@ -6,7 +6,7 @@
 /*   By: bmoretti < bmoretti@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:38:52 by brmoretti         #+#    #+#             */
-/*   Updated: 2024/03/29 08:36:41 by bmoretti         ###   ########.fr       */
+/*   Updated: 2024/03/31 02:41:28 by vde-frei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ typedef struct s_cub
 	t_player	player;
 	t_plane		plane;
 	t_render	*render;
+	bool		render_on;
+	double		delay;
 }	t_cub;
 
 enum	e_direction
@@ -128,6 +130,7 @@ void		render_destroy(t_cub *cub);
 void		render(t_cub *cub);
 void		set_player_dir(t_cub *cub, int i, int j);
 int			error_message(const char *error_msg);
+void		ft_time(void *param);
 
 //HOOK_FUNCTIONS
 void		ft_key_hook(mlx_key_data_t keydata, void *param);
